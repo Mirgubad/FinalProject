@@ -7,19 +7,17 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHomeMainSliderService _homeMainSliderService;
+        private readonly IHomeService _homeService;
 
-        public HomeController(IHomeMainSliderService homeMainSliderService)
+        public HomeController(IHomeService homeService)
         {
-            _homeMainSliderService = homeMainSliderService;
+
+            _homeService = homeService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = new HomeIndexVM
-            {
-                HomeMainSlider =await _homeMainSliderService.GetAllAsync(),
-            };
+            var model = await _homeService.GetAllAsync();
             return View(model);
         }
 

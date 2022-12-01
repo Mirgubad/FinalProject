@@ -17,7 +17,13 @@ namespace DataAccess.Contexts
         }
         public DbSet<HomeMainSlider> HomeMainSlider { get; set; }
         public DbSet<OurVision> OurVision { get; set; }
-    
+        public DbSet<MedicalDepartment> MedicalDepartments { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<WhyChooseUs> WhyChooseUs { get; set; }
+        public DbSet<AboutPhoto> About { get; set; }
+        public DbSet<AboutPhoto> AboutPhoto { get; set; }
+
+
 
     }
 }

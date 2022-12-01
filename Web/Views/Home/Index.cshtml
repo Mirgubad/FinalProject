@@ -7,7 +7,7 @@
             foreach (var slider in Model.HomeMainSlider)
             {
                 <div class="banner-page banner-page-@slider.Order" style="background-image: url(assets/images/@slider.PhotoName);">
-                    <div style="width:900px !important" class="caption caption-@slider.Order" data-aos="fade-up" data-aos-duration="2000">
+                    <div style="font-size:50px" class="caption caption-@slider.Order" data-aos="fade-up" data-aos-duration="2000">
                         @slider.Title
                     </div>
                     <div class="auxilary-caption" data-aos="fade-up" data-aos-duration="2000">
@@ -19,28 +19,6 @@
                 </div>
             }
         }
-        @* <div class="banner-page banner-page-2" style="background-image: url(assets/images/banner-image-2.jpg);">
-        <div class="caption caption-2">
-        Dedication Beyond Measure
-        </div>
-        <div class="auxilary-caption">
-        17 years of experience
-        </div>
-        <div class="button">
-        Learn more
-        </div>
-        </div>
-        <div class="banner-page banner-page-3" style="background-image: url(assets/images/banner-image-3.jpg);">
-        <div class="caption caption-3 ">
-        Trusted for our expertise
-        </div>
-        <div class="auxilary-caption">
-        17 years of experience
-        </div>
-        <div class="button">
-        Learn more
-        </div>
-        </div>*@
 
         <div class="bullets">
             <div class="bullet bullet-1 selected"></div>
@@ -69,56 +47,22 @@
                 </div>
             </div>
             <div class="vision-bottom row">
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="~/assets/images/stethoscope.png" alt="" class="item-icon">
-                        <div class="item-content">
-                            <h5 class="title">World-Class Care</h5>
-                            <p class="item-text">
-                                Rigorously selected board-certified doctors and longer
-                                appointments with doctors who
-                                actually listen.
-                            </p>
+                @{
+                    foreach (var ourVision in Model.OurVision)
+                    {
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="item" data-aos="fade-up" data-aos-duration="2000">
+                                <img src="~/assets/images/@ourVision.PhotoName" alt="" class="item-icon">
+                                <div class="item-content">
+                                    <h5 class="title">@ourVision.Title</h5>
+                                    <div style="font-size:14px">
+                                        @Html.Raw(ourVision.Description)
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-3 mt-md-0">
-                    <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="~/assets/images/physician.png" alt="" class="item-icon">
-                        <div class="item-content">
-                            <h5 class="title">Putting You First</h5>
-                            <p class="item-text">
-                                Same-day appointments, convenient ofice locations, and
-                                on-site lab test with no appointment required.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-3 mt-lg-0">
-                    <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="~/assets/images/phone-vibration.png" alt="" class="item-icon">
-                        <div class="item-content">
-                            <h5 class="title">Everywhere Access</h5>
-                            <p class="item-text">
-                                Book appointments and get 24/7 care via phone, app, or
-                                online, and email directly with your doctor.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-3 mt-lg-0">
-                    <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                        <img src="~/assets/images/stopwatch.png" alt="" class="item-icon">
-                        <div class="item-content">
-                            <h5 class="title">Attention to Service</h5>
-                            <p class="item-text">
-                                95% of appointments start on time or early, and we’re
-                                in-network with most PPO and HMO plans.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </section>
@@ -175,82 +119,22 @@
             </div>
             <div class="department-center">
                 <div class="row ">
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-heart.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">Pulmonary</h5>
-                                <p class="item-text">
-                                    Provides medical care to patients who have problems with their
-                                    heart or circulation.
-                                </p>
+                    @{
+                        foreach (var medicalDepartment in Model.MedicalDepartments)
+                        {
+                            <div class="col-sm-12 col-lg-4 mb-4">
+                                <div class="item" data-aos="fade-up" data-aos-duration="2000">
+                                    <img src="~/assets/images/@medicalDepartment.PhotoName" alt="" class="item-icon">
+                                    <div class="item-content">
+                                        <h5 class="title">@medicalDepartment.Title</h5>
+                                        <div style="font-size:14px !important;" class="item-text">
+                                            @Html.Raw(medicalDepartment.Description)
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4 mt-4 mt-lg-0">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-brain.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">Neurology</h5>
-                                <p class="item-text">
-                                    This unit deals with disorders of the nervous system, including
-                                    the brain and spinal cord.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4 mt-4 mt-lg-0">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-bone.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">
-                                    Prthopaedics
-                                </h5>
-                                <p class="item-text">
-                                    Orthopaedic departments treat problems that affect your
-                                    musculoskeletal system.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-lg-4 mt-4">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-tooth.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">Dental Clinic</h5>
-                                <p class="item-text">
-                                    We are here to provide a full range of exceptional quality care
-                                    for dental services.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4 mt-4">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-liver.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">Pulmonary</h5>
-                                <p class="item-text">
-                                    Syring is one of the leading medical facilities for the
-                                    diagnostic and tearment of lung
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4 mt-4">
-                        <div class="item" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="~/assets/images/home-stomach.png" alt="" class="item-icon">
-                            <div class="item-content">
-                                <h5 class="title">Urology</h5>
-                                <p class="item-text">
-                                    The urology department is run by consultant urology surgeons
-                                    and their surgical teams.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -282,169 +166,130 @@
                 </div>
             </div>
             <div class="doctors-bottom row ">
-                <div class="col-sm-12 col-md-6 col-lg-3  text-center" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="doctor-item">
-                        <img src="~/assets/images/doctor-1.png" alt="">
-                        <div class="doctor-info">
-                            <h4 class="doctor-name">Alex Koztex</h4>
-                            <p class="doctor-speciality">Dentis</p>
-                            <div class="social-media">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                @{
+                    foreach (var doctor in Model.Doctors)
+                    {
+                        if (doctor.AddHome == "Added-Home")
+                        {
+                            <div class="col-sm-12 col-md-6 col-lg-3  text-center" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="doctor-item">
+                                    <img style="width:180px;height:180px;border-radius:50%;" src="~/assets/images/@doctor.PhotoName" alt="">
+                                    <div class="doctor-info">
+                                        <h4 class="doctor-name">@doctor.FullName</h4>
+                                        <p class="doctor-speciality">@doctor.Position</p>
+                                        <div class="social-media">
+                                            @if (doctor.Facebook != null)
+                                            {
+                                                <a href="@doctor.Facebook">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            }
+                                            @if (doctor.LinkedIn != null)
+                                            {
+                                                <a href="@doctor.LinkedIn">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            }
+                                            @if (doctor.Twitter != null)
+                                            {
+                                                <a href="@doctor.Twitter">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-5 mt-md-0 text-center" data-aos="fade-up"
-                     data-aos-duration="2000">
-                    <div class="doctor-item">
-                        <img src="~/assets/images/doctor-2.png" alt="">
-                        <div class="doctor-info">
-                            <h4 class="doctor-name">Mia Clark</h4>
-                            <p class="doctor-speciality">GYNECOLOGY</p>
-                            <div class="social-media">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3  mt-5 mt-lg-0 text-center" data-aos="fade-up"
-                     data-aos-duration="2000">
-                    <div class="doctor-item">
-                        <img src="~/assets/images/doctor-3.png" alt="">
-                        <div class="doctor-info">
-                            <h4 class="doctor-name">Alex Koztex</h4>
-                            <p class="doctor-speciality">Dentis</p>
-                            <div class="social-media">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-5 mt-lg-0 text-center" data-aos="fade-up"
-                     data-aos-duration="2000">
-                    <div class="doctor-item">
-                        <img src="~/assets/images/doctor-4.png" alt="">
-                        <div class="doctor-info">
-                            <h4 class="doctor-name">Alex Koztex</h4>
-                            <p class="doctor-speciality">Dentis</p>
-                            <div class="social-media">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                        }
+                    }
+                }
             </div>
         </div>
     </section>
     <!-- doctors section ends -->
     <!-- why-choose section starts -->
-    <section class="why-choose no-select">
-        <div class="container">
-            <div class="row">
-                <div class="why-choose-left col-lg-6" data-aos="fade-up" data-aos-duration="2000">
-                    <h2 class="heading">
-                        Why Choose the
-                        <span class="defaultcolor">Syring Medical Center</span>
-                    </h2>
-                    <p class="description">
-                        Led by the joint care coordinator, our team has been hand-picked for their positive
-                        attitudes, motivational skills and a desire to provide outstanding service.
-                    </p>
-                    <ul class="checks">
-                        <li class="check-element">
-                            <i class="fas fa-check check"></i>
-                            Free Ambulance Transport
-                        </li>
-                        <li class="check-element">
-                            <i class="fas fa-check check"></i>
-                            Highly Qualified Doctors
-                        </li>
-                        <li class="check-element">
-                            <i class="fas fa-check check"></i>
-                            24×7 Emergency Services
-                        </li>
-                        <li class="check-element">
-                            <i class="fas fa-check check"></i>
-                            Leading Technology
-                        </li>
-                        <li class="check-element">
-                            <i class="fas fa-check check"></i>
-                            Patient Centered Care
-                        </li>
-                    </ul>
+    @{
+        if (Model.WhyChooseUs != null)
+        {
+            <section class="why-choose no-select">
+                <div class="container">
+                    <div class="row">
+                        <div class="why-choose-left col-lg-6" data-aos="fade-up" data-aos-duration="2000">
+                            <h2 class="heading">
+                                <span class="defaultcolor">  @Model.WhyChooseUs.Title</span>
+                            </h2>
+                            @Html.Raw(@Model.WhyChooseUs.Description)
+                            <ul class="checks">
+                                @{
+                                    var services = Model.WhyChooseUs.Services.Split("/");
+                                    
+                                    @foreach (var item in services)
+                                    {
+                                        <li class="check-element">
+                                            <i class="fas fa-check check"></i>
+                                            @item
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="why-choose-right col-lg-6 text-lg-right" data-aos="fade-up" data-aos-duration="2000">
+                            <div style="background-image: url(/assets/images/@Model.WhyChooseUs.PhotoName)">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="why-choose-right col-lg-6 text-lg-right" data-aos="fade-up" data-aos-duration="2000">
-                    <div style="background-image: url(/assets/images/why-choose-photo.jpg)">
+            </section>
+
+            <div class="container">
+                <div class="row align-items-center count-to no-select  " data-aos="fade-up" data-aos-duration="2000">
+                    <div class=" col-12 col-md-4 col-lg-3  text-center count-item">
+                        <i class="fas fa-plus count-plus"></i>
+                        <p class='numscroller' data-min='1' data-max='@Model.WhyChooseUs.SatisifiedPatients' data-delay='30' data-increment='10'></p>
+                        <span class="satisfied-patients">Satisfied Patients</span>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mt-4 mt-md-0  text-center count-item">
+                        <i class="fas fa-plus count-plus"></i>
+                        <p class='numscroller' data-min='1' data-max='@Model.WhyChooseUs.ProfessionalDoctors' data-delay='10' data-increment='5'></p>
+                        <span class="pro-doctor">Professional Doctor</span>
+                    </div>
+                    <div class=" col-12 col-md-4 col-lg-3 mt-4 mt-md-0 text-center count-item">
+                        <div class="d-flex justify-content-center">
+                            <p class='numscroller d-inline-block' data-min='1' data-max='@Model.WhyChooseUs.Quality' data-delay='5'
+                           data-increment='2'></p>
+                            <p>%</p>
+                        </div>
+                        <span class="quality">Quality</span>
+                    </div>
+                    <div class="d-block  d-md-none d-lg-block col-12 col-lg-3 mt-4 mt-md-0 text-center count-item">
+                        <i class="fas fa-plus count-plus plus-experience"></i>
+                        <p class='numscroller' data-min='1' data-max='@Model.WhyChooseUs.YearExperience' data-delay='2' data-increment='1'></p>
+                        <span class="year-experience">Year Experience</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        }
+    }
     <!-- why-choose section ends -->
     <!-- count-to starts -->
-    <div class="container">
-        <div class="row align-items-center count-to no-select  " data-aos="fade-up" data-aos-duration="2000">
-            <div class=" col-12 col-md-4 col-lg-3  text-center count-item">
-                <i class="fas fa-plus count-plus"></i>
-                <p class='numscroller' data-min='1' data-max='980' data-delay='30' data-increment='10'></p>
-                <span class="satisfied-patients">Satisfied Patients</span>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 mt-4 mt-md-0  text-center count-item">
-                <i class="fas fa-plus count-plus"></i>
-                <p class='numscroller' data-min='1' data-max='300' data-delay='10' data-increment='5'></p>
-                <span class="pro-doctor">Professional Doctor</span>
-            </div>
-            <div class=" col-12 col-md-4 col-lg-3 mt-4 mt-md-0 text-center count-item">
-                <div class="d-flex justify-content-center">
-                    <p class='numscroller d-inline-block' data-min='1' data-max='100' data-delay='5'
-                       data-increment='2'></p>
-                    <p>%</p>
-                </div>
-                <span class="quality">Quality</span>
-            </div>
-            <div class="d-block  d-md-none d-lg-block col-12 col-lg-3 mt-4 mt-md-0 text-center count-item">
-                <i class="fas fa-plus count-plus plus-experience"></i>
-                <p class='numscroller' data-min='1' data-max='17' data-delay='2' data-increment='1'></p>
-                <span class="year-experience">Year Experience</span>
-            </div>
-        </div>
-    </div>
     <!-- count-to ends -->
     <!-- latest-news section starts -->
     <section class="latest-news no-select">

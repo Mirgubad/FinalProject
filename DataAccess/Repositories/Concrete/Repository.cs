@@ -51,5 +51,9 @@ namespace DataAccess.Repositories.Concrete
             return await _dbSet.AnyAsync(expression);
         }
 
+        public async Task<T> GetAsync()
+        {
+            return await _dbSet.FirstOrDefaultAsync();
+        }
     }
 }

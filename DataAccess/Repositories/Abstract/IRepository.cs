@@ -11,6 +11,7 @@ namespace DataAccess.Repositories.Abstract
     public interface IRepository<T> where T : BaseEntity
     {
         Task<List<T>> GetAllAsync();
+        Task<T> GetAsync();
         Task<T> GetAsync(int id);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);

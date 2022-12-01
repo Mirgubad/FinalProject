@@ -1,0 +1,29 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Web.Areas.Admin.ViewModels.Doctor
+{
+    public class DoctorDetailsVM
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Position { get; set; }
+        public string Qualification { get; set; }
+        public string ShortInfo { get; set; }
+        public string Introducing { get; set; }
+        public string Skills { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string PhotoName { get; set; }
+        public DateTime MondayToFridayStart { get; set; }
+        public DateTime MondayToFridayEnd { get; set; }
+        public DateTime SaturdayStart { get; set; }
+        public DateTime SaturdayEnd { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
+        public string? SundayIsWorking { get; set; }
+        public string? AddHome { get; set; }
+        public string? Facebook { get; set; }
+        public string? Twitter { get; set; }
+        public string? LinkedIn { get; set; }
+    }
+}

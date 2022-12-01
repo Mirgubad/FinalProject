@@ -65,6 +65,7 @@ namespace Web.Areas.Admin.Services.Concrete
                 }
                 sliderUpdate.PhotoName = await _fileservice.UploadAsync(model.Photo);
             }
+            _fileservice.Delete(sliderUpdate.PhotoName);
             await _homeRepository.UpdateAsync(sliderUpdate);
             return true;
         }

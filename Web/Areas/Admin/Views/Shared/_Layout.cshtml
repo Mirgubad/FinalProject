@@ -54,7 +54,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="buttons.html">Products</a>
-                        <a class="collapse-item" href="cards.html">Doctors</a>
+                        <a class="collapse-item" asp-action="index" asp-controller="medicaldepartment" asp-area="admin">Medical Departments</a>
+                        <a class="collapse-item" asp-action="index" asp-controller="doctor" asp-area="admin">Doctors</a>
+                        <a class="collapse-item" asp-action="index" asp-controller="about" asp-area="admin">About</a>
                     </div>
                 </div>
             </li>
@@ -70,7 +72,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Home</h6>
                         <a class="collapse-item" asp-action="index" asp-controller="homemainslider" asp-area="admin">Main Slider</a>
-                        <a class="collapse-item" href="register.html">Why us component</a>
+                        <a class="collapse-item" asp-action="index" asp-controller="ourvision" asp-area="admin">Our Vision</a>
+                        <a class="collapse-item" asp-action="index" asp-controller="whychooseus" asp-area="admin">Why us component</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">FAQ</h6>
                         <a class="collapse-item" href="404.html">Question category</a>

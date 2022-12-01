@@ -19,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-builder.Services.AddSingleton<IFileService,FileService>();
+builder.Services.AddSingleton<IFileService, FileService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString, x => x.MigrationsAssembly("DataAccess")));
@@ -37,15 +37,30 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 #region Repository
 builder.Services.AddScoped<IHomeMainSliderRepository, HomeMainSliderRepository>();
 builder.Services.AddScoped<IOurVisionRepository, OurVisionRepository>();
+builder.Services.AddScoped<IMedicalDepartmentRepository, MedicalDepartmentRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IWhyChooseUsRepository, WhyChooseUsRepository>();
+builder.Services.AddScoped<IAboutRepository, AboutRepository>();
+builder.Services.AddScoped<IAboutPhotoRepository, AboutPhotoRepository>();
+
 
 #endregion
 
 #region Services
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
+
+
+
+
 builder.Services.AddScoped<AdminAbstractService.IAccountService, AdminConcreteService.AccountService>();
-builder.Services.AddScoped<AdminAbstractService.IHomeMainSliderService,AdminConcreteService.HomeMainSliderService>();   
-builder.Services.AddScoped<IHomeMainSliderService,HomeMainSliderService>();
+builder.Services.AddScoped<AdminAbstractService.IHomeMainSliderService, AdminConcreteService.HomeMainSliderService>();
 builder.Services.AddScoped<AdminAbstractService.IOurVisionService, AdminConcreteService.OurVisionService>();
+builder.Services.AddScoped<AdminAbstractService.IMedicalDepartmentService, AdminConcreteService.MedicalDepartmentService>();
+builder.Services.AddScoped<AdminAbstractService.IDoctorService, AdminConcreteService.DoctorService>();
+builder.Services.AddScoped<AdminAbstractService.IWhyChooseUsService, AdminConcreteService.WhyChooseUsService>();
+builder.Services.AddScoped<AdminAbstractService.IAboutService, AdminConcreteService.AboutService>();
+
 #endregion
 
 

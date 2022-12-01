@@ -15,11 +15,13 @@ namespace Web.Areas.Admin.Controllers
         {
             _ourVisionService = ourVisionService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _ourVisionService.GetAllAsync();
+            return View(model);
         }
 
+        #region Create
         public async Task<IActionResult> Create()
         {
 
@@ -33,5 +35,31 @@ namespace Web.Areas.Admin.Controllers
             if (isSucceded) return RedirectToAction("index", "ourvision");
             return View(model);
         }
+        #endregion
+
+        #region Update
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var model = await _ourVisionService.GetUpdateModelAsync(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, OurVisionUpdateVM model)
+        {
+            var isSucceded = await _ourVisionService.UpdateAsync(model);
+            if (isSucceded) return RedirectToAction("index", "ourvision");
+            return View(model);
+        }
+        #endregion
+
+        #region Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _ourVisionService.DeleteAsync(id);
+            return RedirectToAction("index", "ourvision");
+        }
+        #endregion
     }
 }
