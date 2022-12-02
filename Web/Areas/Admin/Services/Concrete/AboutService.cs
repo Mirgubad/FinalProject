@@ -4,6 +4,7 @@ using DataAccess.Repositories.Abstract;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Security.AccessControl;
 using Ubiety.Dns.Core.Records;
 using Web.Areas.Admin.Services.Abstract;
 using Web.Areas.Admin.ViewModels.About;
@@ -100,6 +101,12 @@ namespace Web.Areas.Admin.Services.Concrete
                 await _aboutRepository.DeleteAsync(about);
         }
 
+        public async Task DeletePhotoAsync(int id)
+        {
+            var aboutPhoto = await _aboutPhotoRepository.GetAsync(id);
+            await _aboutPhotoRepository.DeleteAsync(aboutPhoto);
+        }
+
         public async Task<AboutIndexVM> GetAsync()
         {
             var about = await _aboutRepository.GetAsync();
@@ -111,9 +118,49 @@ namespace Web.Areas.Admin.Services.Concrete
             return model;
         }
 
-        public Task<AboutUpdateVM> GetUpdateModelAsync(int id)
+        public async Task<AboutDetailsVM> GetDetailsAsync(int id)
         {
-            throw new NotImplementedException();
+            var aboutUs = await _aboutRepository.GetAsync(id);
+
+            var model = new AboutDetailsVM
+            {
+                CreatedAt = aboutUs.CreatedAt,
+                Description = aboutUs.Description,
+                ModifiedAt = aboutUs.ModifiedAt,
+                Header = aboutUs.Header,
+                Id = aboutUs.Id,
+                IconPhoto = aboutUs.IconName,
+                Title = aboutUs.Title,
+                Photos = await _aboutPhotoRepository.GetAllAsync()
+            };
+            return model;
+
+        }
+
+        public async Task<AboutUpdateVM> GetUpdateModelAsync(int id)
+        {
+            var about = await _aboutRepository.GetAsync(id);
+            var model = new AboutUpdateVM
+            {
+                Id = about.Id,
+                Description = about.Description,
+                Header = about.Header,
+                Title = about.Title,
+                AboutPhoto = await _aboutPhotoRepository.GetAllAsync(),
+            };
+            return model;
+        }
+
+        public async Task<AboutPhotoUpdateVM> GetUpdatePhotoModelAsync(int id)
+        {
+            var aboutPhoto = await _aboutPhotoRepository.GetAsync(id);
+            var model = new AboutPhotoUpdateVM
+            {
+                Id = aboutPhoto.Id,
+                Order = aboutPhoto.Order,
+                AboutId = aboutPhoto.AboutId,
+            };
+            return model;
         }
 
         public async Task<bool> IsExistAsync()
@@ -125,6 +172,7 @@ namespace Web.Areas.Admin.Services.Concrete
 
         public async Task<bool> UpdateAsync(AboutUpdateVM model)
         {
+            var aboutPhoto = await _aboutPhotoRepository.GetAllAsync();
             if (!_modelState.IsValid) return false;
             var about = await _aboutRepository.GetAsync(model.Id);
             if (about == null) return false;
@@ -132,6 +180,8 @@ namespace Web.Areas.Admin.Services.Concrete
             about.Description = model.Description;
             about.Title = model.Title;
             about.ModifiedAt = DateTime.Now;
+            model.AboutPhoto = aboutPhoto;
+            about.Header = model.Header;
 
 
             int maxSize = 1000;
@@ -157,35 +207,44 @@ namespace Web.Areas.Admin.Services.Concrete
                 bool hasError = false;
                 foreach (var photo in model.Photos)
                 {
-                    if (!_fileService.CheckPhoto(model.IconPhoto))
+                    if (!_fileService.CheckPhoto(photo))
                     {
                         _modelState.AddModelError("Photos", $"{photo.FileName} must be image");
                         hasError = true;
                     }
-                    else if (!_fileService.MaxSize(model.IconPhoto, maxSize))
+                    else if (!_fileService.MaxSize(photo, maxSize))
                     {
                         _modelState.AddModelError("Photos", $"{photo.FileName} size must be less than {maxSize}kb");
                         hasError = true;
                     }
-
                 }
-
                 if (hasError) return false;
-
+                int order = 1;
                 foreach (var photo in model.Photos)
                 {
-                    var aboutPhoto = await _aboutPhotoRepository.GetAsync();
-                    _fileService.Delete(aboutPhoto.PhotoName);
-                    aboutPhoto.PhotoName = await _fileService.UploadAsync(photo);
-                    await _aboutPhotoRepository.UpdateAsync(aboutPhoto);
+                    var aboutPhotos = new AboutPhoto
+                    {
+                        AboutId = about.Id,
+                        Order = order++,
+                        CreatedAt = DateTime.Now,
+                        PhotoName = await _fileService.UploadAsync(photo),
+                    };
+                    await _aboutPhotoRepository.CreateAsync(aboutPhotos);
                 }
-
-
             }
             await _aboutRepository.UpdateAsync(about);
             return true;
 
+        }
 
+        public async Task<bool> UpdatePhotoAsync(AboutPhotoUpdateVM model)
+        {
+            var aboutPhoto = await _aboutPhotoRepository.GetAsync(model.Id);
+            aboutPhoto.Order = model.Order;
+            model.AboutId = aboutPhoto.AboutId;
+            aboutPhoto.ModifiedAt = DateTime.Now;
+            await _aboutPhotoRepository.UpdateAsync(aboutPhoto);
+            return true;
         }
     }
 }

@@ -22,7 +22,9 @@ namespace DataAccess.Contexts
         public DbSet<WhyChooseUs> WhyChooseUs { get; set; }
         public DbSet<AboutPhoto> About { get; set; }
         public DbSet<AboutPhoto> AboutPhoto { get; set; }
-
+        public DbSet<HomeVideo> HomeVideo { get; set; }
+        public DbSet<LastestNews> LastestNews { get; set; }
+        public DbSet<Pricing> Pricing { get; set; }
 
 
     }

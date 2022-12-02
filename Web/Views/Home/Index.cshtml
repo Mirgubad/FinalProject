@@ -68,40 +68,40 @@
     </section>
     <!-- vision section ends -->
     <!-- about section starts -->
-    <section class="about about-home no-select">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="about-content" data-aos="fade-up" data-aos-duration="2000">
-                        <span class="sub-heading">About Us</span>
-                        <h2 class="heading">
-                            Your Health is <br>
-                            Our <span class="defaultcolor">Primary Concern</span>
-                        </h2>
-                        <p class="about-content">
-                            We serve our communities by providing exceptional care, as we prevent illness,
-                            restore health and provide comfort to all who entrust us with their care.
-                        </p>
-                        <p class="description">
-                            Over 180 physicians in 40 diffrent specialties work together with the 2,000+ employees
-                            at Syring Medical Center to offer a full spectrum of diagnostic and treatment services
-                            for people of all ages.
-                        </p>
-                        <div class="signature">
-                            <img src="~/assets/images/signature.png" alt="">
+    @{
+        if (Model.About != null)
+        {
+            <section class="about about-home no-select">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="about-content" data-aos="fade-up" data-aos-duration="2000">
+                                <span class="sub-heading">@Model.About.Header</span>
+                                <h2 class="heading">
+                                    @Html.Raw(Model.About.Title)
+                                </h2>
+                                @Html.Raw(Model.About.Description)
+                                <div class="signature">
+                                    <img src="~/assets/images/@Model.About.IconName" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="about-images text-sm-center text-md-left" data-aos="fade-up"
+                             data-aos-duration="2000">
+                                @foreach (var photo in Model.AboutPhoto)
+                                {
+                                    <img src="~/assets/images/@photo.PhotoName" class="about-image about-image-@photo.Order mt-5 mt-md-0" />
+                                    <img src="~/assets/images/@photo.PhotoName" class="about-image about-image-@photo.Order  mt-5 mt-md-0" />
+                                }
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="about-images text-sm-center text-md-left" data-aos="fade-up"
-                         data-aos-duration="2000">
-                        <img src="~/assets/images/about-1.jpg" class="about-image about-image-1 mt-5 mt-md-0"></img>
-                        <img src="~/assets/images/about-2.jpg" class="about-image about-image-2  mt-5 mt-md-0"></img>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        }
+    }
     <!-- about section ends -->
     <!-- department section starts -->
     <section class="department no-select">
@@ -144,17 +144,31 @@
 
     </section>
     <!-- department section ends -->
-    <!-- video section starts -->
-    <section class="video" style="background-image: url(assets/images/covervideo.jpg)" data-aos="fade-up"
-             data-aos-duration="2000">
-        <div class="video-overlay d-flex justify-content-center align-items-center">
-            <div class="play-button d-flex justify-content-center align-items-center">
-                <i class="fas fa-caret-right triangle"></i>
-                <div class="scaling-background"></div>
-            </div>
-        </div>
-    </section>
-    <!-- video section ends -->
+    @{
+        if (Model.HomeVideo != null)
+        {
+            <!-- video section starts -->
+            <section class="video" style="background-image: url(assets/images/@Model.HomeVideo.PhotoName)" data-aos="fade-up"
+                 data-aos-duration="2000">
+                <div class="video-overlay d-flex justify-content-center align-items-center">
+                    <div class="play-button d-flex justify-content-center align-items-center">
+                        <i class="fas fa-caret-right triangle"></i>
+                        <div class="scaling-background"> </div>
+                    </div>
+                </div>
+            </section>
+            <!-- video section ends -->
+            <section class="modal">
+                <div class="container">
+                    <div class="quit-button d-flex justify-content-end"><i class="fas fa-times quit-x"></i></div>
+                    <div class="modal-content">
+                        <iframe width="fit-content" height="630" src="@Html.Raw(Model.HomeVideo.Link)" title="Javid - Ты моя Дунья (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
     <!-- doctors section starts -->
     <section class="doctors no-select">
         <div class="container">
@@ -240,7 +254,7 @@
                             <ul class="checks">
                                 @{
                                     var services = Model.WhyChooseUs.Services.Split("/");
-                                    
+
                                     @foreach (var item in services)
                                     {
                                         <li class="check-element">
@@ -299,126 +313,23 @@
                 <h2 class="heading">Lastest News</h2>
             </div>
             <div class="latest-news-bottom" data-aos="fade-up" data-aos-duration="2000">
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-1.jpg" alt="">
-                    </div>
-                    <div class="date-type  text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-2.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-3.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-4.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-5.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-6.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-7.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-8.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-9.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="item-photo">
-                        <img src="~/assets/images/news-photo-10.jpg" alt="">
-                    </div>
-                    <div class="date-type text-center">
-                        <span class="date">April 3, 2019</span>
-                        <span class="type">| Cancer</span>
-                    </div>
-                    <div class="item-text text-center">
-                        How Some Cancer Patients May Be Able to Avoid Hair Loss
-                    </div>
-                </div>
+                @{
+                    foreach (var lastestNews in Model.LastestNews)
+                    {
+                        <div class="news-item">
+                            <div class="item-photo">
+                                <img src="~/assets/images/@lastestNews.PhotoName" alt="">
+                            </div>
+                            <div class="date-type  text-center">
+                                <span class="date">@lastestNews.CreatedAt.ToLongDateString()</span>
+                                <span class="type">| @lastestNews.Type</span>
+                            </div>
+                            <div class="item-text text-center">
+                                @lastestNews.Title
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>
     </section>

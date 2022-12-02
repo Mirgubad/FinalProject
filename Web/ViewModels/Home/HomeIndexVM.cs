@@ -9,5 +9,10 @@ namespace Web.ViewModels.Home
         public List<MedicalDepartment> MedicalDepartments { get; set; }
         public List<Doctor> Doctors { get; set; }
         public WhyChooseUs WhyChooseUs { get; set; }
+        public About About { get; set; }
+        public List<AboutPhoto> AboutPhoto { get; set; }
+        public HomeVideo HomeVideo { get; set; }
+        public List<LastestNews> LastestNews { get; set; }
+
     }
 }

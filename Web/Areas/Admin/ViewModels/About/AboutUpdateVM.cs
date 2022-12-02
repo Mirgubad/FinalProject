@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Core.Entities;
 
 namespace Web.Areas.Admin.ViewModels.About
 {
@@ -14,5 +15,6 @@ namespace Web.Areas.Admin.ViewModels.About
         [Required]
         public string Description { get; set; }
         public List<IFormFile>? Photos { get; set; }
+        public List<AboutPhoto>? AboutPhoto { get; set; }
     }
 }

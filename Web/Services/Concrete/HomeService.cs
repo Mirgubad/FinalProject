@@ -11,18 +11,30 @@ namespace Web.Services.Concrete
         private readonly IMedicalDepartmentRepository _medicalDepartmentRepository;
         private readonly IOurVisionRepository _ourVisionRepository;
         private readonly IWhyChooseUsRepository _whyChooseUsRepository;
+        private readonly IAboutRepository _aboutRepository;
+        private readonly IAboutPhotoRepository _aboutPhotoRepository;
+        private readonly IHomeVideoRepository _homeVideoRepository;
+        private readonly ILastestNewsRepository _lastestNewsRepository;
 
         public HomeService(IHomeMainSliderRepository homeMainSliderRepository,
             IDoctorRepository doctorRepository,
             IMedicalDepartmentRepository medicalDepartmentRepository,
             IOurVisionRepository ourVisionRepository,
-            IWhyChooseUsRepository whyChooseUsRepository)
+            IWhyChooseUsRepository whyChooseUsRepository,
+            IAboutRepository aboutRepository,
+            IAboutPhotoRepository aboutPhotoRepository,
+            IHomeVideoRepository homeVideoRepository,
+            ILastestNewsRepository lastestNewsRepository)
         {
             _homeMainSliderRepository = homeMainSliderRepository;
             _doctorRepository = doctorRepository;
             _medicalDepartmentRepository = medicalDepartmentRepository;
             _ourVisionRepository = ourVisionRepository;
             _whyChooseUsRepository = whyChooseUsRepository;
+            _aboutRepository = aboutRepository;
+            _aboutPhotoRepository = aboutPhotoRepository;
+            _homeVideoRepository = homeVideoRepository;
+            _lastestNewsRepository = lastestNewsRepository;
         }
         public async Task<HomeIndexVM> GetAllAsync()
         {
@@ -33,6 +45,10 @@ namespace Web.Services.Concrete
                 MedicalDepartments = await _medicalDepartmentRepository.GetAllAsync(),
                 OurVision = await _ourVisionRepository.GetAllAsync(),
                 WhyChooseUs = await _whyChooseUsRepository.GetAsync(),
+                About = await _aboutRepository.GetAsync(),
+                AboutPhoto = await _aboutPhotoRepository.GetAllAsync(),
+                HomeVideo = await _homeVideoRepository.GetAsync(),
+                LastestNews=await _lastestNewsRepository.GetAllAsync(),
             };
 
             return model;

@@ -1,6 +1,8 @@
 ﻿@using Web.Areas.Admin.ViewModels.About;
 @model AboutIndexVM;
 
+
+<h4>About</h4>
 @{
     if (Model.About == null)
     {
@@ -19,7 +21,6 @@
                     <th scope="col">Description</th>
                     <th scope="col">Sign Photo</th>
                     <th class="text-center" scope="col">Photos</th>
-                  
                     <th scope="col">Created At</th>
                     <th scope="col">Modified At</th>
                     <th scope="col">Actions</th>
@@ -29,10 +30,10 @@
                 <tr>
                     <td>@Model.About.Id</td>
                     <td>@Model.About.Header</td>
-                    <td>@Model.About.Title</td>
+                    <td>@Html.Raw(Model.About.Title)</td>
                     <td>@Html.Raw(Model.About.Description)</td>
                     <td>
-                        <img style="width:140px;height:120px;object-fit:contain" class="img-thumbnail" src="~/assets/images/@Model.About.IconName" />
+                        <img style="width:90px;height:70px;object-fit:contain" class="img-thumbnail" src="~/assets/images/@Model.About.IconName" />
                     </td>
                     <td>
                         @{

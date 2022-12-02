@@ -41,6 +41,17 @@ namespace Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region Details
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await _aboutService.GetDetailsAsync(id);
+            if (model == null) return NotFound();
+            return View(model);
+
+        }
+        #endregion
+
         #region Update
         public async Task<IActionResult> Update(int id)
         {
@@ -59,6 +70,33 @@ namespace Web.Areas.Admin.Controllers
         }
 
 
+        #endregion
+
+        #region UpdatePhoto
+        public async Task<IActionResult> UpdatePhoto(int id)
+        {
+            var model = await _aboutService.GetUpdatePhotoModelAsync(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdatePhoto(int id, AboutPhotoUpdateVM model)
+        {
+            if (model.Id != id) return BadRequest();
+            var isSucceded = await _aboutService.UpdatePhotoAsync(model);
+            if (isSucceded) return RedirectToAction("update", "about", new { id = model.AboutId });
+            return View(model);
+        }
+        #endregion
+
+        #region DeletePhoto
+        [HttpPost]
+        public async Task<IActionResult> DeletePhoto(int id)
+        {
+            var aboutPhoto = await _aboutService.GetUpdatePhotoModelAsync(id);
+            await _aboutService.DeletePhotoAsync(id);
+            return RedirectToAction("update", "about", new { id = aboutPhoto.AboutId });
+        }
         #endregion
     }
 }
