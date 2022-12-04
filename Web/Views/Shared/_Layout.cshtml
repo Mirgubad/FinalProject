@@ -56,8 +56,7 @@
                                 <span class="title">Doctors</span>
                                 <div class="sub-menu">
                                     <div class="sub-menu-wrapper">
-                                        <a href="find-doctor.html">Find A Doctor</a>
-                                        <a href="doctor-single.html">Doctor Single</a>
+                                        <a asp-action="index" asp-controller="doctor">Find A Doctor</a>
                                     </div>
                                 </div>
                             </li>
@@ -65,7 +64,7 @@
                                 <span class="title">Departments</span>
                                 <div class="sub-menu">
                                     <div class="sub-menu-wrapper">
-                                        <a href="medical-department.html">Medical Department</a>
+                                        <a asp-action="index" asp-controller="department">Medical Department</a>
                                     </div>
                                 </div>
                             </li>
@@ -78,15 +77,20 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="shop">
-                                <span class="title">Account</span>
-                                <div class="sub-menu">
-                                    <div class="sub-menu-wrapper">
-                                        <a asp-action="register" asp-controller="account">Register</a>
-                                        <a asp-action="login" asp-controller="account">Login</a>
-                                    </div>
-                                </div>
-                            </li>
+                            @{
+                                if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li class="shop">
+                                        <span class="title">Account</span>
+                                        <div class="sub-menu">
+                                            <div class="sub-menu-wrapper">
+                                                <a asp-action="register" asp-controller="account">Register</a>
+                                                <a asp-action="login" asp-controller="account">Login</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            }
                         </ul>
                         <div class="search-basket-menu d-flex align-items-center">
                             <div class="search d-none d-md-block"><img src="~/assets/images/search-icon.png" alt=""></div>
@@ -319,7 +323,6 @@
         <!-- footer-bottom ends -->
     </footer>
     <!-- footer ends -->
-   
     <!-- scroll-top button starts -->
     <div class="st-btn">
         <i class="fas fa-chevron-up"></i>
@@ -345,6 +348,7 @@
     <script src="~/assets/bootstrap/bootstrap.min.js"></script>
     <!--javascript-->
     <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/custom.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <!--scripts end-->
 </body>

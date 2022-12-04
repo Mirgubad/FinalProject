@@ -45,6 +45,8 @@ builder.Services.AddScoped<IAboutPhotoRepository, AboutPhotoRepository>();
 builder.Services.AddScoped<IHomeVideoRepository, HomeVideoRepository>();
 builder.Services.AddScoped<ILastestNewsRepository, LastestNewsRepository>();
 builder.Services.AddScoped<IPricingRepository, PricingRepository>();
+builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 #endregion
@@ -53,6 +55,11 @@ builder.Services.AddScoped<IPricingRepository, PricingRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IPricingService, PricingService>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IQuestionCategoryRepository, QuestionCategoryRepository>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IFaqService, FaqService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 
 
@@ -67,6 +74,11 @@ builder.Services.AddScoped<AdminAbstractService.IAboutService, AdminConcreteServ
 builder.Services.AddScoped<AdminAbstractService.IHomeVideoService, AdminConcreteService.HomeVideoService>();
 builder.Services.AddScoped<AdminAbstractService.ILastestNewsService, AdminConcreteService.LastestNewsService>();
 builder.Services.AddScoped<AdminAbstractService.IPricingService, AdminConcreteService.PricingService>();
+builder.Services.AddScoped<AdminAbstractService.IQuestionCategoryService, AdminConcreteService.QuestionCategoryService>();
+builder.Services.AddScoped<AdminAbstractService.IQuestionService, AdminConcreteService.QuestionService>();
+builder.Services.AddScoped<AdminAbstractService.IProductCategoryService, AdminConcreteService.ProductCategoryService>();
+builder.Services.AddScoped<AdminAbstractService.IProductService, AdminConcreteService.ProductService>();
+
 
 #endregion
 

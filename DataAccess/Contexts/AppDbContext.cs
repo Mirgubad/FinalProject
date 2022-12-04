@@ -25,6 +25,13 @@ namespace DataAccess.Contexts
         public DbSet<HomeVideo> HomeVideo { get; set; }
         public DbSet<LastestNews> LastestNews { get; set; }
         public DbSet<Pricing> Pricing { get; set; }
+        public DbSet<Question> Question { get; set; }
+        public DbSet<QuestionCategory> QuestionCategorie { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+
+
 
 
     }
