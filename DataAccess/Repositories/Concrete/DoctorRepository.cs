@@ -32,9 +32,15 @@ namespace DataAccess.Repositories.Concrete
             return (int)Math.Ceiling((decimal)pageCount / take);
         }
 
-        public IQueryable<Doctor> FilterByName(string? name)
+        public async Task<List<Doctor>> FilterByName(string? name)
         {
-            return _context.Doctors.Where(d => !string.IsNullOrEmpty(name) ? d.FullName.Contains(name) : true);
+            return await _context.Doctors.Where(d => !string.IsNullOrEmpty(name) ? d.FullName.Contains(name) : true).ToListAsync();
+        }
+
+        public async Task<List<Doctor>> GetHomeDoctorsAsync()
+        {
+            var doctors = await _context.Doctors.Where(d => d.ShowInHome).ToListAsync();
+            return doctors;
         }
     }
 }

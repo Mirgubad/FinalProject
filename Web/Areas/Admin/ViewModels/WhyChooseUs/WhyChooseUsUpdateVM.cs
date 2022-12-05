@@ -12,13 +12,6 @@ namespace Web.Areas.Admin.ViewModels.WhyChooseUs
         [Required]
         public string Services { get; set; }
         public IFormFile? Photo { get; set; }
-        [Required]
-        public int SatisifiedPatients { get; set; }
-        [Required]
-        public int ProfessionalDoctors { get; set; }
-        [Required]
-        public int Quality { get; set; }
-        [Required]
-        public int YearExperience { get; set; }
+     
     }
 }

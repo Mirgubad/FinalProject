@@ -14,7 +14,8 @@ namespace DataAccess.Repositories.Abstract
 
         Task<List<Doctor>> PaginateBlogAsync(int page, int take);
         Task<int> GetPageCountAsync(int take);
-        IQueryable<Doctor> FilterByName(string? categoryId);
+        Task<List<Doctor>> FilterByName(string? categoryId);
+        Task<List<Doctor>> GetHomeDoctorsAsync();
 
 
     }

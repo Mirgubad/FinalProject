@@ -8,6 +8,8 @@ namespace Web.Areas.Admin.ViewModels.Product
         [Required]
         public string Title { get; set; }
         [Required]
+        public int Quantity { get; set; }
+        [Required]
         public double Price { get; set; }
         [Required]
         public IFormFile Photo { get; set; }

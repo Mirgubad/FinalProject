@@ -26,7 +26,7 @@
             <input class="form-control" asp-for="Position" />
             <span class="text-danger" asp-validation-for="Position"></span>
         </div>
-          <div class="form-group">
+        <div class="form-group">
             <label asp-for="Skills"></label>
             <textarea class="form-control" asp-for="Skills"></textarea>
             <span class="text-danger" asp-validation-for="Skills"></span>
@@ -46,7 +46,7 @@
             <label asp-for="Introducing"></label>
             <textarea class="form-control" asp-for="Introducing"></textarea>
             <span class="text-danger" asp-validation-for="Introducing"></span>
-        </div>    
+        </div>
 
         <div class="form-group">
             <label asp-for="SaturdayStart"></label>
@@ -75,57 +75,19 @@
             <span class="text-danger" asp-validation-for="Photo"></span>
         </div>
         <div class="form-group">
-            @{
-                if (Model.AddHome == "Added-Home")
-                {
-                    <label asp-for="AddHome" class="control-form "></label>
-                    <div class="form-group">
-                        <label for="add">Add</label>
-                        <input checked class="px-2" id="add" type="radio" asp-for="AddHome" value="Added-Home" />
-                        <label for="nonadd">Non Add</label>
-                        <input class="px-2" id="nonadd" type="radio" asp-for="AddHome" value="Non-Add" />
-                    </div>
-                    <span asp-validation-for="AddHome" class="text-danger"></span>
-                }
-                else
-                {
-                    <label asp-for="AddHome" class="control-form "></label>
-                    <div class="form-group">
-                        <label for="add">Add</label>
-                        <input class="px-2" id="add" type="radio" asp-for="AddHome" value="Added-Home" />
-                        <label for="nonadd">Non Add</label>
-                        <input checked class="px-2" id="nonadd" type="radio" asp-for="AddHome" value="Non-Add" />
-                    </div>
-                    <span asp-validation-for="AddHome" class="text-danger"></span>
-                }
-            }
+            <label asp-for="ShowInHome" class="control-form "></label>
+            <div class="form-group">
+                <label for="add">Add</label>
+                <input class="px-2" id="add" type="checkbox" asp-for="ShowInHome" />
 
+            </div>
         </div>
         <div class="form-group">
-            @{
-                if (Model.SundayIsWorking == "Working")
-                {
-                    <label asp-for="SundayIsWorking" class="control-form "></label>
-                    <div class="form-group">
-                        <label for="working">Working</label>
-                        <input checked class="px-2" id="working" type="radio" asp-for="SundayIsWorking" value="Working" />
-                        <label for="noworking">No Working</label>
-                        <input class="px-2" id="noworking" type="radio" asp-for="SundayIsWorking" value="No Working" />
-                    </div>
-                    <span asp-validation-for="AddHome" class="text-danger"></span>
-                }
-                else
-                {
-                    <label asp-for="SundayIsWorking" class="control-form "></label>
-                    <div class="form-group">
-                        <label for="working">Working</label>
-                        <input class="px-2" id="working" type="radio" asp-for="SundayIsWorking" value="Working" />
-                        <label for="noworking">No Working</label>
-                        <input checked class="px-2" id="noworking" type="radio" asp-for="SundayIsWorking" value="No Working" />
-                    </div>
-                    <span asp-validation-for="AddHome" class="text-danger"></span>
-                }
-            }
+            <label asp-for="SundayIsWorking" class="control-form "></label>
+            <div class="form-group">
+                <label for="working">Working</label>
+                <input class="px-2" id="working" type="checkbox" asp-for="SundayIsWorking" />
+            </div>
         </div>
         <div class="form-group">
             <label asp-for="Facebook"></label>
@@ -172,4 +134,4 @@
                 console.error(error);
             });
     </script>
-    }
+        }

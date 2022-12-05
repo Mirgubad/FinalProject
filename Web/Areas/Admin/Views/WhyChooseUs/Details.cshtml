@@ -15,10 +15,6 @@
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">Year Experience</th>
-            <th scope="col">Satisified Patients</th>
-            <th scope="col">Proffesional Doctors</th>
-            <th scope="col">Quality</th>
             <th scope="col">Created At</th>
             <th scope="col">Modified At</th>
         </tr>
@@ -28,10 +24,7 @@
             <th scope="row">@Model.Id</th>
             <td>@Model.Title</td>
             <td>@Html.Raw(Model.Description)</td>
-            <td>@Model.YearExperience</td>
-            <td>@Model.SatisifiedPatients</td>
-            <td>@Model.ProfessionalDoctors</td>
-            <td>@Model.Quality</td>
+           
             <td>@Model.CreatedAt.ToLocalTime().ToUniversalTime()</td>
             <td>
                 @{

@@ -63,9 +63,10 @@ namespace Web.Areas.Admin.Services.Concrete
                     _modelState.AddModelError("Photo", $"File size must be less than {maxSize}kb");
                     return true;
                 }
+                _fileservice.Delete(sliderUpdate.PhotoName);
                 sliderUpdate.PhotoName = await _fileservice.UploadAsync(model.Photo);
             }
-            _fileservice.Delete(sliderUpdate.PhotoName);
+
             await _homeRepository.UpdateAsync(sliderUpdate);
             return true;
         }
@@ -97,13 +98,17 @@ namespace Web.Areas.Admin.Services.Concrete
             {
                 order = 1;
             }
+            else
+            {
+                order++;
+            }
             var mainSlider = new HomeMainSlider
             {
                 Title = model.Title,
                 CreatedAt = DateTime.Now,
                 ButtonLink = model.ButtonLink,
                 Slogan = model.Slogan,
-                Order = order++,
+                Order = order,
                 PhotoName = await _fileservice.UploadAsync(model.Photo)
             };
 

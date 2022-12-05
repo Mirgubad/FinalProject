@@ -15,6 +15,7 @@ namespace Web.Services.Concrete
         private readonly IAboutPhotoRepository _aboutPhotoRepository;
         private readonly IHomeVideoRepository _homeVideoRepository;
         private readonly ILastestNewsRepository _lastestNewsRepository;
+        private readonly IStatisticRepository _statisticRepository;
 
         public HomeService(IHomeMainSliderRepository homeMainSliderRepository,
             IDoctorRepository doctorRepository,
@@ -24,7 +25,8 @@ namespace Web.Services.Concrete
             IAboutRepository aboutRepository,
             IAboutPhotoRepository aboutPhotoRepository,
             IHomeVideoRepository homeVideoRepository,
-            ILastestNewsRepository lastestNewsRepository)
+            ILastestNewsRepository lastestNewsRepository,
+            IStatisticRepository statisticRepository)
         {
             _homeMainSliderRepository = homeMainSliderRepository;
             _doctorRepository = doctorRepository;
@@ -35,20 +37,22 @@ namespace Web.Services.Concrete
             _aboutPhotoRepository = aboutPhotoRepository;
             _homeVideoRepository = homeVideoRepository;
             _lastestNewsRepository = lastestNewsRepository;
+            _statisticRepository = statisticRepository;
         }
         public async Task<HomeIndexVM> GetAllAsync()
         {
             var model = new HomeIndexVM
             {
                 HomeMainSlider = await _homeMainSliderRepository.GetAllAsync(),
-                Doctors = await _doctorRepository.GetAllAsync(),
+                Doctors = await _doctorRepository.GetHomeDoctorsAsync(),
                 MedicalDepartments = await _medicalDepartmentRepository.GetAllAsync(),
                 OurVision = await _ourVisionRepository.GetAllAsync(),
                 WhyChooseUs = await _whyChooseUsRepository.GetAsync(),
                 About = await _aboutRepository.GetAsync(),
                 AboutPhoto = await _aboutPhotoRepository.GetAllAsync(),
                 HomeVideo = await _homeVideoRepository.GetAsync(),
-                LastestNews=await _lastestNewsRepository.GetAllAsync(),
+                LastestNews = await _lastestNewsRepository.GetAllAsync(),
+                Statistics = await _statisticRepository.GetAllAsync(),
             };
 
             return model;

@@ -18,13 +18,6 @@ namespace Core.Entities
         public string Services { get; set; }
         [Required]
         public string PhotoName { get; set; }
-        [Required]
-        public int SatisifiedPatients { get; set; }
-        [Required]
-        public int ProfessionalDoctors { get; set; }
-        [Required]
-        public int Quality { get; set; }
-        [Required]
-        public int YearExperience { get; set; }
+       
     }
 }

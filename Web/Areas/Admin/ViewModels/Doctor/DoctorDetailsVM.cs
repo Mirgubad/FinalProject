@@ -20,8 +20,8 @@ namespace Web.Areas.Admin.ViewModels.Doctor
         public DateTime SaturdayEnd { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
-        public string? SundayIsWorking { get; set; }
-        public string? AddHome { get; set; }
+        public bool SundayIsWorking { get; set; }
+        public bool ShowInHome { get; set; }
         public string? Facebook { get; set; }
         public string? Twitter { get; set; }
         public string? LinkedIn { get; set; }

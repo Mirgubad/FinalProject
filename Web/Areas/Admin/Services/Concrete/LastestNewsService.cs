@@ -25,6 +25,12 @@ namespace Web.Areas.Admin.Services.Concrete
         public async Task<bool> CreateAsync(LastestNewsCreateVM model)
         {
             if (!_modelState.IsValid) return false;
+            var isExist = await _lastestNewsRepository.AnyAsync(ln => ln.Title.Trim().ToLower() == model.Title.Trim().ToLower());
+            if (isExist)
+            {
+                _modelState.AddModelError("Title", "This content already created");
+                return false;
+            }
             int maxSize = 1000;
             if (!_fileService.CheckPhoto(model.Photo))
             {
@@ -47,16 +53,16 @@ namespace Web.Areas.Admin.Services.Concrete
                 order++;
             }
             var lastestNews = new LastestNews
-                {
-                    CreatedAt = DateTime.Now,
-                    Title = model.Title,
-                    Type = model.Type,
-                    PhotoName = await _fileService.UploadAsync(model.Photo),
-                    Order = order
-                };
+            {
+                CreatedAt = DateTime.Now,
+                Title = model.Title,
+                Type = model.Type,
+                PhotoName = await _fileService.UploadAsync(model.Photo),
+                Order = order
+            };
 
-                await _lastestNewsRepository.CreateAsync(lastestNews);
-           
+            await _lastestNewsRepository.CreateAsync(lastestNews);
+
 
             return true;
         }
@@ -92,6 +98,13 @@ namespace Web.Areas.Admin.Services.Concrete
         public async Task<bool> UpdateAsync(LastestNewsUpdateVM model)
         {
             var lastestNews = await _lastestNewsRepository.GetAsync(model.Id);
+            var isExist = await _lastestNewsRepository.AnyAsync(ln => ln.Title.Trim().ToLower() == model.Title.Trim().ToLower() &&
+            model.Id != ln.Id);
+            if (isExist)
+            {
+                _modelState.AddModelError("Title", "This content already created");
+                return false;
+            }
             if (!_modelState.IsValid) return false;
             lastestNews.Title = model.Title;
             lastestNews.ModifiedAt = DateTime.Now;

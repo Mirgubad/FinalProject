@@ -14,13 +14,6 @@ namespace Web.Areas.Admin.ViewModels.WhyChooseUs
 
         public string PhotoName { get; set; }
 
-        public int SatisifiedPatients { get; set; }
-
-        public int ProfessionalDoctors { get; set; }
-
-        public int Quality { get; set; }
-
-        public int YearExperience { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
     }

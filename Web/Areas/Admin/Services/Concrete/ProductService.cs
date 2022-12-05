@@ -55,7 +55,7 @@ namespace Web.Areas.Admin.Services.Concrete
                 Photoname = await _fileService.UploadAsync(model.Photo),
                 Price = model.Price,
                 Title = model.Title,
-
+                Quantity = model.Quantity,
             };
 
             await _productRepository.CreateAsync(product);
@@ -81,7 +81,6 @@ namespace Web.Areas.Admin.Services.Concrete
         public async Task<List<SelectListItem>> GetCategoriesAsync()
         {
             var categories = await _productCategoryRepository.GetAllAsync();
-
             return categories.Select(c => new SelectListItem
             {
                 Value = c.Id.ToString(),
@@ -92,7 +91,6 @@ namespace Web.Areas.Admin.Services.Concrete
         public async Task<ProductCreateVM> GetCategoriesCreateModelAsync()
         {
             var categories = await _productCategoryRepository.GetAllAsync();
-
             var model = new ProductCreateVM
             {
                 Categories = categories.Select(c => new SelectListItem
@@ -101,7 +99,6 @@ namespace Web.Areas.Admin.Services.Concrete
                     Text = c.Title
                 }).ToList()
             };
-
             return model;
         }
 
@@ -124,6 +121,7 @@ namespace Web.Areas.Admin.Services.Concrete
                 Price = product.Price,
                 Title = product.Title,
                 Id = product.Id,
+                Quantity = product.Quantity
             };
             return model;
         }
@@ -134,17 +132,19 @@ namespace Web.Areas.Admin.Services.Concrete
             if (!_modelState.IsValid) return false;
             var isExist = await _productRepository.AnyAsync(p => p.Title.Trim().ToLower() == model.Title.Trim().ToLower()
             && model.Id != p.Id);
-            var product = await _productRepository.GetAsync(model.Id);
-            product.ModifiedAt = DateTime.Now;
-            product.CategoryId = model.CategoryId;
-            product.Price = model.Price;
-            product.Title = model.Title;
-
             if (isExist)
             {
                 _modelState.AddModelError("Title", "This product already created");
                 return false;
             }
+            var product = await _productRepository.GetAsync(model.Id);
+            product.ModifiedAt = DateTime.Now;
+            product.CategoryId = model.CategoryId;
+            product.Price = model.Price;
+            product.Title = model.Title;
+            product.Quantity = model.Quantity;
+
+
             if (model.Photo != null)
             {
                 int maxSize = 1000;

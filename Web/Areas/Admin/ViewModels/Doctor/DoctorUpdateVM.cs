@@ -9,8 +9,11 @@ namespace Web.Areas.Admin.ViewModels.Doctor
         public string FullName { get; set; }
         [Required]
         public string Position { get; set; }
+        [Required]
         public string Qualification { get; set; }
+        [Required]
         public string ShortInfo { get; set; }
+        [Required]
         public string Introducing { get; set; }
 
         [Required, MaxLength(40)]
@@ -22,9 +25,10 @@ namespace Web.Areas.Admin.ViewModels.Doctor
         public DateTime MondayToFridayEnd { get; set; } = DateTime.Parse("15:00");
         public DateTime SaturdayStart { get; set; } = DateTime.Parse("13:00");
         public DateTime SaturdayEnd { get; set; } = DateTime.Parse("17:00");
-        public string? SundayIsWorking { get; set; }
-        public string? Skills { get; set; }
-        public string? AddHome { get; set; }
+        public bool SundayIsWorking { get; set; }
+        [Required]
+        public string Skills { get; set; }
+        public bool ShowInHome { get; set; }
         public string? Facebook { get; set; }
         public string? Twitter { get; set; }
         public string? LinkedIn { get; set; }

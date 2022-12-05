@@ -48,7 +48,7 @@ namespace Web.Areas.Admin.Services.Concrete
                 LinkedIn = model.LinkedIn,
                 Position = model.Position,
                 Twitter = model.Twitter,
-                AddHome = model.AddHome,
+                ShowInHome = model.ShowInHome,
                 PhotoName = await _fileService.UploadAsync(model.Photo),
                 Skills = skills,
                 Email = model.Email,
@@ -97,7 +97,7 @@ namespace Web.Areas.Admin.Services.Concrete
                 SundayIsWorking = doctor.SundayIsWorking,
                 MondayToFridayStart = doctor.MondayToFridayStart,
                 MondayToFridayEnd = doctor.MondayToFridayEnd,
-                AddHome = doctor.AddHome,
+                ShowInHome = doctor.ShowInHome,
                 Qualification = doctor.Qualification,
                 Email = doctor.Email,
                 FullName = doctor.FullName,
@@ -119,7 +119,7 @@ namespace Web.Areas.Admin.Services.Concrete
             var model = new DoctorUpdateVM
             {
                 FullName = doctor.FullName,
-                AddHome = doctor.AddHome,
+                ShowInHome = doctor.ShowInHome,
                 Facebook = doctor.Facebook,
                 LinkedIn = doctor.LinkedIn,
                 Position = doctor.Position,
@@ -146,7 +146,7 @@ namespace Web.Areas.Admin.Services.Concrete
 
             doctor.Position = model.Position;
             doctor.Twitter = model.Twitter;
-            doctor.AddHome = model.AddHome;
+            doctor.ShowInHome = model.ShowInHome;
             doctor.Facebook = model.Facebook;
             doctor.LinkedIn = model.LinkedIn;
             doctor.ModifiedAt = DateTime.Now;

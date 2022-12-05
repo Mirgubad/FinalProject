@@ -12,6 +12,8 @@
             <th scope="col">Id</th>
             <th scope="col">Photo</th>
             <th scope="col">Title</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
             <th scope="col">Category</th>
             <th scope="col">Created At</th>
             <th scope="col">Modified At</th>
@@ -26,6 +28,8 @@
                         <td>@product.Id</td>
                         <td><img style="width:120px;height:130px" src="~/assets/images/@product.Photoname" /></td>
                         <td>@product.Title</td>
+                        <td>@product.Quantity</td>
+                        <td>@product.Price</td>
                         <td>@product.Category.Title</td>
                         <td>@product.CreatedAt</td>
                         <td>

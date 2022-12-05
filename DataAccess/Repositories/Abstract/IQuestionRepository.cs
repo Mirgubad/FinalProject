@@ -13,11 +13,7 @@ namespace DataAccess.Repositories.Abstract
     {
         Task<List<Question>> GetQuestionsWithCategory();
 
-        IQueryable<Question> FilterByCategory( int? categoryId);
-
-        
-
-
+        Task<List<Question>> FilterByCategory(int? categoryId);
 
 
 

@@ -51,20 +51,18 @@ namespace Web.Areas.Admin.Services.Concrete
 
             var whyChooseUs = new WhyChooseUs
             {
-                SatisifiedPatients = model.SatisifiedPatients,
+
                 Services = model.Services,
                 CreatedAt = DateTime.Now,
                 Description = model.Description,
                 PhotoName = await _fileService.UploadAsync(model.Photo),
-                ProfessionalDoctors = model.ProfessionalDoctors,
-                Quality = model.Quality,
                 Title = model.Title,
-                YearExperience = model.YearExperience
+
             };
             await _chooseUsRepository.CreateAsync(whyChooseUs);
             return true;
         }
-
+        
         public async Task DeleteAsync(int id)
         {
             var whyChooseUs = await _chooseUsRepository.GetAsync(id);
@@ -85,13 +83,10 @@ namespace Web.Areas.Admin.Services.Concrete
             var whyChooseUs = await _chooseUsRepository.GetAsync(id);
             var model = new WhyChooseUsUpdateVM
             {
-                SatisifiedPatients = whyChooseUs.SatisifiedPatients,
+
                 Description = whyChooseUs.Description,
                 Services = whyChooseUs.Services,
-                ProfessionalDoctors = whyChooseUs.ProfessionalDoctors,
-                Quality = whyChooseUs.Quality,
                 Title = whyChooseUs.Title,
-                YearExperience = whyChooseUs.YearExperience,
                 Id = whyChooseUs.Id
             };
             return model;
@@ -103,12 +98,9 @@ namespace Web.Areas.Admin.Services.Concrete
             if (whychooseUs == null) return false;
             whychooseUs.Description = model.Description;
             whychooseUs.Services = model.Services;
-            whychooseUs.SatisifiedPatients = model.SatisifiedPatients;
-            whychooseUs.Quality = model.Quality;
             whychooseUs.Title = model.Title;
             whychooseUs.ModifiedAt = DateTime.Now;
-            whychooseUs.YearExperience = model.YearExperience;
-            whychooseUs.ProfessionalDoctors = model.ProfessionalDoctors;
+
 
             if (model.Photo != null)
             {
@@ -138,13 +130,9 @@ namespace Web.Areas.Admin.Services.Concrete
             var model = new WhyChooseUsDetailsVM
             {
                 Description = whyChooseUs.Description,
-                SatisifiedPatients = whyChooseUs.SatisifiedPatients,
                 Services = whyChooseUs.Services,
                 PhotoName = whyChooseUs.PhotoName,
-                ProfessionalDoctors = whyChooseUs.ProfessionalDoctors,
-                Quality = whyChooseUs.Quality,
                 Title = whyChooseUs.Title,
-                YearExperience = whyChooseUs.YearExperience,
                 Id = whyChooseUs.Id,
                 CreatedAt = whyChooseUs.CreatedAt,
                 ModifiedAt = whyChooseUs.ModifiedAt

@@ -97,9 +97,6 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AddHome")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -157,11 +154,14 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("ShowInHome")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Skills")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SundayIsWorking")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("SundayIsWorking")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Twitter")
                         .HasColumnType("nvarchar(max)");
@@ -458,6 +458,9 @@ namespace DataAccess.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -492,6 +495,33 @@ namespace DataAccess.Migrations
                     b.ToTable("ProductCategories");
                 });
 
+            modelBuilder.Entity("Core.Entities.Statistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Quantity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statistics");
+                });
+
             modelBuilder.Entity("Core.Entities.WhyChooseUs", b =>
                 {
                     b.Property<int>("Id")
@@ -514,15 +544,6 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProfessionalDoctors")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quality")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SatisifiedPatients")
-                        .HasColumnType("int");
-
                     b.Property<string>("Services")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -531,9 +552,6 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
-
-                    b.Property<int>("YearExperience")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

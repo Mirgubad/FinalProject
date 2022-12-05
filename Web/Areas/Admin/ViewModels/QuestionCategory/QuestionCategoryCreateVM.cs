@@ -14,7 +14,8 @@ namespace Web.Areas.Admin.ViewModels.QuestionCategory
         public string Description { get; set; }
 
         [Display(Name = "Active Status")]
-        public ActiveStatus ActiveStatus { get; set; }
+        public ActiveStatus ActiveStatus { get; set; } 
+
 
     }
 }

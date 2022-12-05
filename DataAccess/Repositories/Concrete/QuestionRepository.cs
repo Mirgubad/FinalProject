@@ -19,10 +19,10 @@ namespace DataAccess.Repositories.Concrete
             _context = context;
         }
 
-      
-        public IQueryable<Question> FilterByCategory(int? categoryId)
+
+        public async Task<List<Question>> FilterByCategory(int? categoryId)
         {
-            return _context.Question.Where(p => categoryId != null ? p.QuestionCategoryId == categoryId : true);
+            return await _context.Question.Where(p => categoryId != null ? p.QuestionCategoryId == categoryId : true).ToListAsync();
         }
 
 

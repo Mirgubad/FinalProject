@@ -15,9 +15,9 @@ namespace Web.Services.Concrete
             _questionRepository = questionRepository;
         }
 
-       
 
-        public IQueryable<Question> FilterByCategory(int id)
+
+        public Task<List<Question>> FilterByCategory(int id)
         {
             var questions = _questionRepository.FilterByCategory(id);
             return questions;

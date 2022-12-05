@@ -17,7 +17,7 @@ namespace Web.Services.Concrete
             _doctorRepository = doctorRepository;
         }
 
-        public IQueryable<Doctor> FilterByName(string name)
+        public Task<List<Doctor>> FilterByName(string name)
         {
             var doctors = _doctorRepository.FilterByName(name);
             return doctors;
@@ -25,8 +25,7 @@ namespace Web.Services.Concrete
 
         public async Task<DoctorIndexVM> GetAllDoctorAsync(DoctorIndexVM model)
         {
-            var doctors = await FilterByName(model.FullName).ToListAsync();
-            doctors = await _doctorRepository.PaginateBlogAsync(model.Page, model.Take);
+            var doctors = await _doctorRepository.PaginateBlogAsync(model.Page, model.Take);
             var pageCount = await _doctorRepository.GetPageCountAsync(model.Take);
             model = new DoctorIndexVM
             {
@@ -37,7 +36,6 @@ namespace Web.Services.Concrete
             };
             return model;
         }
-
         public async Task<Doctor> GetDoctorAsync(int id)
         {
             var doctor = await _doctorRepository.GetAsync(id);

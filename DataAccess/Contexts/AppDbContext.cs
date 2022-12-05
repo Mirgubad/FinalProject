@@ -29,6 +29,8 @@ namespace DataAccess.Contexts
         public DbSet<QuestionCategory> QuestionCategorie { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
+
 
 
 

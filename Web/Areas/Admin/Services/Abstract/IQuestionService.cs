@@ -8,7 +8,6 @@ namespace Web.Areas.Admin.Services.Abstract
     public interface IQuestionService
     {
         Task<bool> CreateAsync(QuestionCreateVM model);
-        //Task<MedicalDepartmentIndexVM> GetAllAsync();
         Task<QuestionIndexVM> GetQuestionWithCategoryAsync();
         Task<bool> UpdateAsync(QuestionUpdateVM model);
         Task<List<SelectListItem>> GetCategoriesAsync();

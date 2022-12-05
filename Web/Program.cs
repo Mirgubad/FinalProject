@@ -47,6 +47,7 @@ builder.Services.AddScoped<ILastestNewsRepository, LastestNewsRepository>();
 builder.Services.AddScoped<IPricingRepository, PricingRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 
 
 #endregion
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IQuestionCategoryRepository, QuestionCategoryReposito
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IShopService, ShopService>();
 
 
 
@@ -78,6 +80,7 @@ builder.Services.AddScoped<AdminAbstractService.IQuestionCategoryService, AdminC
 builder.Services.AddScoped<AdminAbstractService.IQuestionService, AdminConcreteService.QuestionService>();
 builder.Services.AddScoped<AdminAbstractService.IProductCategoryService, AdminConcreteService.ProductCategoryService>();
 builder.Services.AddScoped<AdminAbstractService.IProductService, AdminConcreteService.ProductService>();
+builder.Services.AddScoped<AdminAbstractService.IStatisticService, AdminConcreteService.StatisticService>();
 
 
 #endregion

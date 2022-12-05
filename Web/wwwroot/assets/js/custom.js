@@ -13,4 +13,28 @@
             }
         })
     })
+
+
+    $(document).on("click", '#search-doctor', function () {
+        var name = $('#FullName').val()
+        $.ajax({
+            method: "GET",
+            url: "/doctor/filterbyname",
+            data: {
+                name: name
+            },
+            success: function (result) {
+                if (name != "") {
+                    $('#doctor-items').html("");
+                    $('#doctor-items').append(result);
+                }
+                else {
+                    $('#FullName').attr("placeholder", "Type Something")
+                }
+
+            }
+        })
+    })
+
+
 });

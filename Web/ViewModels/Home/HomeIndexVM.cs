@@ -13,6 +13,7 @@ namespace Web.ViewModels.Home
         public List<AboutPhoto> AboutPhoto { get; set; }
         public HomeVideo HomeVideo { get; set; }
         public List<LastestNews> LastestNews { get; set; }
+        public List<Statistic> Statistics { get; set; }
 
     }
 }

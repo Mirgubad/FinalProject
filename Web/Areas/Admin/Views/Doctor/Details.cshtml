@@ -20,7 +20,7 @@
             <td>@Model.FullName</td>
             <td>
                 @{
-                    if (@Model.AddHome == "Added-Home")
+                    if (@Model.ShowInHome == true)
                     {
                         <p>True</p>
                     }
@@ -90,7 +90,7 @@
             </td>
             <td>
                 @{
-                    if (@Model.SundayIsWorking=="Working"){
+                    if (@Model.SundayIsWorking==true){
                         <p>Working</p>
                     }else{
                         <p>Not Working</p>

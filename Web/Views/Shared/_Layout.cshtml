@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="~/assets/slick/slick-theme.css">
     <!--main css-->
     <link rel="stylesheet" href="~/assets/css/style.css">
-    <title>Home</title>
+    <title>@ViewBag.Title</title>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
                                 <span class="title">Shop</span>
                                 <div class="sub-menu">
                                     <div class="sub-menu-wrapper">
-                                        <a href="sidebar-left.html">Sidebar left</a>
+                                        <a asp-action="index" asp-controller="shop">Sidebar left</a>
                                         <a href="cart.html">Cart</a>
                                     </div>
                                 </div>

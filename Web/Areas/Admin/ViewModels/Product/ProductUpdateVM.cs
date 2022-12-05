@@ -10,6 +10,8 @@ namespace Web.Areas.Admin.ViewModels.Product
         public string Title { get; set; }
         [Required]
         public double Price { get; set; }
+        [Required]
+        public int Quantity { get; set; }
         public IFormFile? Photo { get; set; }
         public int CategoryId { get; set; }
         public List<SelectListItem>? Categories { get; set; }

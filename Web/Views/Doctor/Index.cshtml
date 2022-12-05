@@ -1,6 +1,9 @@
 ﻿@using Web.ViewModels.Doctor;
 @model DoctorIndexVM;
 
+@{
+    ViewBag.Title = "Doctors";
+}
 <main>
     <!-- main-frame section starts -->
     <section class="main-frame-2 no-select" style="background-image: url(assets/images/doctor-page-title.jpg);">
@@ -27,17 +30,14 @@
                         <span class="line"></span>
                         <div class="search-doctor-content">
                             <div class="search-doctor-content-wrapper">
-                                <form method="get" asp-action="index" asp-controller="doctor">
-                                    <label for="">Doctor Name</label>
-                                    <input asp-for="FullName" placeholder="Enter doctor name"  class="search-doctor-input">
-                                    <button class="button search-button text-center">Search Now</button>
-                                </form>
-
+                                <label for="">Doctor Name</label>
+                                <input id="FullName" placeholder="Enter doctor name" class="search-doctor-input">
+                                <button id="search-doctor" class="button text-center">Search Now</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-8 find-doctor-right">
+                <div class="col-sm-12 col-lg-8 find-doctor-right" id="doctor-items">
                     <p class="associated-doctor-title">
                         Associated Doctors in Syring.
                     </p>
