@@ -19,6 +19,19 @@ namespace DataAccess.Repositories.Concrete
             _context = context;
         }
 
+        public async Task<bool> DeleteProductAsync(int productdId)
+        {
+            var basketProduct = await _context.BasketProducts.FirstOrDefaultAsync(p=>p.ProductId==productdId);
+            if (basketProduct == null)
+            {
+                return false;
+            }
+            _context.BasketProducts.Remove(basketProduct);
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
+
         public async Task<BasketProduct> GetBasketProducts(int modelId, int basketId)
         {
             var basketProduct = await _context.BasketProducts.FirstOrDefaultAsync(bp => bp.ProductId == modelId && bp.BasketId == basketId);

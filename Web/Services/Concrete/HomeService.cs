@@ -14,7 +14,7 @@ namespace Web.Services.Concrete
         private readonly IAboutRepository _aboutRepository;
         private readonly IAboutPhotoRepository _aboutPhotoRepository;
         private readonly IHomeVideoRepository _homeVideoRepository;
-        private readonly ILastestNewsRepository _lastestNewsRepository;
+        private readonly INewsRepository _lastestNewsRepository;
         private readonly IStatisticRepository _statisticRepository;
 
         public HomeService(IHomeMainSliderRepository homeMainSliderRepository,
@@ -25,7 +25,7 @@ namespace Web.Services.Concrete
             IAboutRepository aboutRepository,
             IAboutPhotoRepository aboutPhotoRepository,
             IHomeVideoRepository homeVideoRepository,
-            ILastestNewsRepository lastestNewsRepository,
+            INewsRepository lastestNewsRepository,
             IStatisticRepository statisticRepository)
         {
             _homeMainSliderRepository = homeMainSliderRepository;

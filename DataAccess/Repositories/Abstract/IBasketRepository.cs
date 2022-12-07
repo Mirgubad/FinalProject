@@ -9,11 +9,12 @@ namespace DataAccess.Repositories.Abstract
 {
     public interface IBasketRepository : IRepository<Basket>
     {
-        Task<Basket> GetBasketAsync(string userId);
-        Task<Basket> GetBasketProducts();
-        Task<bool> RemoveAsync(int id);
-        Task<bool> IncreaseCountAsync(int id);
-        Task<bool> DecreaseCountAsync(int id);
+
+        Task<Basket> GetBasketWithProducts(string userId);
+
+
+
+
 
     }
 }

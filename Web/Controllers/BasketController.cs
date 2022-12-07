@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Web.Services.Abstract;
 using Web.ViewModels.Basket;
@@ -54,5 +55,12 @@ namespace Web.Controllers
             return Ok();
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> MiniBasket()
+        {
+            var model = await _basketService.GetBasketProducts();
+            return PartialView("_MiniBasketPartial", model);
+        }
     }
 }

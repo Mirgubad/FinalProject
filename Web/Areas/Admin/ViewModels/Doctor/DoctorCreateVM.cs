@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web.Areas.Admin.ViewModels.Doctor
 {
@@ -7,7 +8,7 @@ namespace Web.Areas.Admin.ViewModels.Doctor
         [Required]
         public string FullName { get; set; }
         [Required]
-        public string Position { get; set; }
+        public Position Position { get; set; }
         [Required]
         public string Qualification { get; set; }
         [Required]
@@ -22,10 +23,10 @@ namespace Web.Areas.Admin.ViewModels.Doctor
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public IFormFile Photo { get; set; }
-        public DateTime MondayToFridayStart { get; set; } = DateTime.Parse("8:00");
-        public DateTime MondayToFridayEnd { get; set; } = DateTime.Parse("15:00");
-        public DateTime SaturdayStart { get; set; } = DateTime.Parse("13:00");
-        public DateTime SaturdayEnd { get; set; } = DateTime.Parse("17:00");
+        public DateTime MondayToFridayStart { get; set; } 
+        public DateTime MondayToFridayEnd { get; set; }  
+        public DateTime SaturdayStart { get; set; }  
+        public DateTime SaturdayEnd { get; set; }  
         public bool SundayIsWorking { get; set; }
         public bool ShowInHome { get; set; }
         public string? Facebook { get; set; }

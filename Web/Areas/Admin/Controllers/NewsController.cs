@@ -7,11 +7,11 @@ namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    public class LastestNewsController : Controller
+    public class NewsController : Controller
     {
-        private readonly ILastestNewsService _lastestNewsService;
+        private readonly INewsService _lastestNewsService;
 
-        public LastestNewsController(ILastestNewsService lastestNewsService)
+        public NewsController(INewsService lastestNewsService)
         {
             _lastestNewsService = lastestNewsService;
         }
@@ -27,7 +27,7 @@ namespace Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(LastestNewsCreateVM model)
+        public async Task<IActionResult> Create(NewsCreateVM model)
         {
             var isSucceded = await _lastestNewsService.CreateAsync(model);
             if (isSucceded) return RedirectToAction("index", "lastestnews");
@@ -43,7 +43,7 @@ namespace Web.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(int id, LastestNewsUpdateVM model)
+        public async Task<IActionResult> Update(int id, NewsUpdateVM model)
         {
             var isSucceded = await _lastestNewsService.UpdateAsync(model);
             if (isSucceded) return RedirectToAction("index", "lastestnews");

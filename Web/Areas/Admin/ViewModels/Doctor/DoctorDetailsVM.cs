@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web.Areas.Admin.ViewModels.Doctor
 {
@@ -6,7 +7,7 @@ namespace Web.Areas.Admin.ViewModels.Doctor
     {
         public int Id { get; set; }
         public string FullName { get; set; }
-        public string Position { get; set; }
+        public Position Position { get; set; }
         public string Qualification { get; set; }
         public string ShortInfo { get; set; }
         public string Introducing { get; set; }

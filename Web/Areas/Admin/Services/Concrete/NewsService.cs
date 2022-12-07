@@ -8,21 +8,21 @@ using Web.Areas.Admin.ViewModels.LastestNews;
 
 namespace Web.Areas.Admin.Services.Concrete
 {
-    public class LastestNewsService : ILastestNewsService
+    public class NewsService : INewsService
     {
         private readonly IFileService _fileService;
-        private readonly ILastestNewsRepository _lastestNewsRepository;
+        private readonly INewsRepository _lastestNewsRepository;
         private readonly ModelStateDictionary _modelState;
 
-        public LastestNewsService(IFileService fileService,
-            ILastestNewsRepository lastestNewsRepository,
+        public NewsService(IFileService fileService,
+            INewsRepository lastestNewsRepository,
             IActionContextAccessor actionContextAccessor)
         {
             _fileService = fileService;
             _lastestNewsRepository = lastestNewsRepository;
             _modelState = actionContextAccessor.ActionContext.ModelState;
         }
-        public async Task<bool> CreateAsync(LastestNewsCreateVM model)
+        public async Task<bool> CreateAsync(NewsCreateVM model)
         {
             if (!_modelState.IsValid) return false;
             var isExist = await _lastestNewsRepository.AnyAsync(ln => ln.Title.Trim().ToLower() == model.Title.Trim().ToLower());
@@ -73,20 +73,20 @@ namespace Web.Areas.Admin.Services.Concrete
             await _lastestNewsRepository.DeleteAsync(lastestNews);
         }
 
-        public async Task<LastestNewsIndexVM> GetAllAsync()
+        public async Task<NewsIndexVM> GetAllAsync()
         {
-            var lastestNews = await _lastestNewsRepository.GetAllAsync();
-            var model = new LastestNewsIndexVM
+            var lastestNews = await _lastestNewsRepository.GetAllByDescByDateAsync();
+            var model = new NewsIndexVM
             {
                 LastestNews = lastestNews
             };
             return model;
         }
 
-        public async Task<LastestNewsUpdateVM> GetUpdateModelAsync(int id)
+        public async Task<NewsUpdateVM> GetUpdateModelAsync(int id)
         {
             var lastestNews = await _lastestNewsRepository.GetAsync(id);
-            var model = new LastestNewsUpdateVM
+            var model = new NewsUpdateVM
             {
                 Order = lastestNews.Order,
                 Title = lastestNews.Title,
@@ -95,7 +95,7 @@ namespace Web.Areas.Admin.Services.Concrete
             return model;
         }
 
-        public async Task<bool> UpdateAsync(LastestNewsUpdateVM model)
+        public async Task<bool> UpdateAsync(NewsUpdateVM model)
         {
             var lastestNews = await _lastestNewsRepository.GetAsync(model.Id);
             var isExist = await _lastestNewsRepository.AnyAsync(ln => ln.Title.Trim().ToLower() == model.Title.Trim().ToLower() &&

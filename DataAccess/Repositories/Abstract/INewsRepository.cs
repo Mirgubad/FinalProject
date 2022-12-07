@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Abstract
 {
-    public interface ILastestNewsRepository:IRepository<LastestNews>
+    public interface INewsRepository : IRepository<LastestNews>
     {
+        Task<List<LastestNews>> GetAllByDescByDateAsync();
+
     }
 }

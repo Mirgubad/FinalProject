@@ -7,7 +7,7 @@ namespace Web.Services.Abstract
     {
         Task<DoctorIndexVM> GetAllDoctorAsync(DoctorIndexVM model);
     
-        Task<Doctor> GetDoctorAsync(int id);
+        Task<Doctor> DoctorDetailsAsync(int id);
         Task<List<Doctor>> FilterByName(string name);
 
     }

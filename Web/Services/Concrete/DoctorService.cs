@@ -36,7 +36,7 @@ namespace Web.Services.Concrete
             };
             return model;
         }
-        public async Task<Doctor> GetDoctorAsync(int id)
+        public async Task<Doctor> DoctorDetailsAsync(int id)
         {
             var doctor = await _doctorRepository.GetAsync(id);
             return doctor;

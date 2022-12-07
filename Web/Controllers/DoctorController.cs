@@ -24,7 +24,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var doctor = await _doctorService.GetDoctorAsync(id);
+            var doctor = await _doctorService.DoctorDetailsAsync(id);
             return View(doctor);
         }
 

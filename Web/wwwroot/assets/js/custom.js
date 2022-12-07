@@ -70,7 +70,7 @@
                 if (result != "") {
                     $('#products').html("");
                     $('#products').append(result);
-                }
+                } 
 
             }
         })
@@ -79,6 +79,8 @@
 
     $(document).on("click", '.addToCardBtn', function () {
         var id = $(this).data('id')
+        var basketCount = $('#miniBasket')
+        var count = 0;
         $.ajax({
             method: "POST",
             url: "/basket/add",
@@ -86,7 +88,20 @@
                 id: id
             },
             success: function (result) {
+                  
+            }
+        })
+
+    })
+
+    $(document).on("click", "#openBasket", function () {
+        $.ajax({
+            method: "GET",
+            url: "/basket/minibasket",
+            success: function (result) {
                 console.log(result)
+                $('#miniBasket').html("");
+                $('#miniBasket').append(result);
             }
         })
     })
@@ -102,7 +117,7 @@
                 id: id
             },
             success: function (result) {
- 
+
                 $(`.basket-product[id=${id}]`).remove();
 
             }
@@ -120,8 +135,7 @@
                 id: id
             },
             success: function (result) {
-                console.log(id)
-                console.log(result)
+               
             }
         })
     })
@@ -137,10 +151,13 @@
                 id: id
             },
             success: function (result) {
-                console.log(id)
-                console.log(result)
+               
             }
         })
     })
+
+
+
+
 
 });

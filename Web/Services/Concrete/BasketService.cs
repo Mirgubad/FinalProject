@@ -2,9 +2,6 @@
 using DataAccess.Contexts;
 using DataAccess.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 using Web.Services.Abstract;
 using Web.ViewModels.Basket;
 
@@ -41,13 +38,14 @@ namespace Web.Services.Concrete
             var product = await _productRepository.GetAsync(modelId);
             if (product == null) return false;
 
-            var basket = await _basketRepository.GetBasketAsync(user.Id);
+            var basket = await _basketRepository.GetBasketWithProducts(user.Id);
 
             if (basket == null)
             {
                 basket = new Basket
                 {
-                    UserId = user.Id
+                    UserId = user.Id,
+                    CreatedAt = DateTime.Now
                 };
                 await _basketRepository.CreateAsync(basket);
             }
@@ -75,45 +73,87 @@ namespace Web.Services.Concrete
 
         public async Task<bool> DecreaseCountAsync(int id)
         {
-            var isSucceded = await _basketRepository.DecreaseCountAsync(id);
-            if (isSucceded) return true;
-            return false;
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (user == null) return false;
+            var basketProduct = await _basketRepository.GetBasketWithProducts(user.Id);
+            if (basketProduct != null)
+            {
+                foreach (var dbbasketProduct in basketProduct.BasketProducts)
+                {
+                    if (dbbasketProduct.ProductId == id)
+                    {
+                        if (dbbasketProduct.Quantity > 1)
+                        {
+                            dbbasketProduct.Quantity--;
+                            await _basketRepository.UpdateAsync(basketProduct);
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public async Task<BasketIndexVM> GetBasketProducts()
         {
-            var products = await _basketRepository.GetBasketProducts();
-
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (user == null) return null;
+            var basket = await _basketRepository.GetBasketWithProducts(user.Id);
             var model = new BasketIndexVM();
-            foreach (var product in products.BasketProducts)
+            if (basket != null)
             {
-                var basketProducts = new BasketProductVM
+                foreach (var basketProduct in basket.BasketProducts)
                 {
-                    Id = product.ProductId,
-                    Photoname = product.Product.Photoname,
-                    Price = product.Product.Price,
-                    Quantity = product.Quantity,
-                    Title = product.Product.Title,
-
-                };
-                model.BasketProducts.Add(basketProducts);
+                    var basketProducts = new BasketProductVM
+                    {
+                        Id = basketProduct.ProductId,
+                        Photoname = basketProduct.Product.Photoname,
+                        Price = basketProduct.Product.Price,
+                        Quantity = basketProduct.Quantity,
+                        Title = basketProduct.Product.Title,
+                    };
+                    model.BasketProducts.Add(basketProducts);
+                }
             }
-
+            else
+            {
+                basket = new Basket();
+            }
             return model;
         }
 
         public async Task<bool> IncreaseCountAsync(int id)
         {
-            var isSucceded = await _basketRepository.IncreaseCountAsync(id);
-            if (isSucceded) return true;
-            return false;
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (user == null) return false;
+            var basketProduct = await _basketRepository.GetBasketWithProducts(user.Id);
+            if (basketProduct != null)
+            {
+                foreach (var dbbasketProduct in basketProduct.BasketProducts)
+                {
+                    if (dbbasketProduct.ProductId == id)
+                    {
+
+                        dbbasketProduct.Quantity++;
+                        await _basketRepository.UpdateAsync(basketProduct);
+                    }
+                }
+            }
+            return true;
         }
 
         public async Task<bool> RemoveAsync(int id)
         {
-            var isSucceded = await _basketRepository.RemoveAsync(id);
-            if (isSucceded) return true;
-            return false;
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (user == null) return false;
+
+            var basketProduct = await _basketRepository.GetBasketWithProducts(user.Id);
+            if (basketProduct == null) return false;
+
+            var product = await _productRepository.GetAsync(id);
+            if (product == null) return false;
+
+            await _basketProductRepository.DeleteProductAsync(product.Id);
+            return true;
         }
     }
 }

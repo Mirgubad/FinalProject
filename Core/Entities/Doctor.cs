@@ -1,4 +1,5 @@
-﻿using DataAccess.Contexts.Base;
+﻿using Core.Constants;
+using DataAccess.Contexts.Base;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Core.Entities
         [Required]
         public string FullName { get; set; }
         [Required]
-        public string Position { get; set; }
+        public Position Position { get; set; }
         public string Qualification { get; set; }
         public string ShortInfo { get; set; }
         public string Introducing { get; set; }

@@ -10,7 +10,7 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Title</th>
-            <th scope="col">Added Home</th>
+            <th scope="col">Showing Home</th>
             <th scope="col">Photo</th>
             <th scope="col">Created At</th>
             <th scope="col">Modified At</th>
@@ -25,13 +25,13 @@
                 <td>@doctor.FullName</td>
                 <td>
                     @{
-                        if (@doctor.ShowInHome == true)
+                        if (@doctor.ShowInHome)
                         {
-                            <p>True</p>
+                            <p>Showing</p>
                         }
                         else
                         {
-                            <p>False</p>
+                            <p>Not Showing</p>
                         }
                     }
                 </td>
