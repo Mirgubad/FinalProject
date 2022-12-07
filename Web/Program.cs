@@ -48,6 +48,8 @@ builder.Services.AddScoped<IPricingRepository, PricingRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IBasketProductRepository, BasketProductRepository>();
 
 
 #endregion
@@ -62,6 +64,7 @@ builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddScoped<IBasketService, BasketService>();
 
 
 

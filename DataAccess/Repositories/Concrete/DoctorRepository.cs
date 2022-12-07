@@ -20,8 +20,9 @@ namespace DataAccess.Repositories.Concrete
             _context = context;
         }
 
-        public async Task<List<Doctor>> PaginateBlogAsync(int page, int take)
+        public async Task<List<Doctor>> PaginateDoctorAsync(int page, int take)
         {
+
             var doctors = await _context.Doctors.Skip((page - 1) * take).Take(take).ToListAsync();
             return doctors;
         }

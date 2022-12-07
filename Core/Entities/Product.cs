@@ -15,8 +15,7 @@ namespace Core.Entities
         public string Photoname { get; set; }
         public int CategoryId { get; set; }
         public ProductCategory Category { get; set; }
-
-
+        public ICollection<BasketProduct> BasketProducts { get; set; }
 
     }
 }

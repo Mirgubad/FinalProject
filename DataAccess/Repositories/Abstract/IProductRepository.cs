@@ -10,5 +10,9 @@ namespace DataAccess.Repositories.Abstract
     public interface IProductRepository : IRepository<Product>
     {
         Task<List<Product>> GetProductsWithCategoryAsync();
+        Task<List<Product>> FilterByCategoryId(int? categoryId);
+        Task<List<Product>> FilterByName(string? name);
+        Task<List<Product>> PaginateProductAsync(int page, int take);
+        Task<int> GetPageCountAsync(int take);
     }
 }

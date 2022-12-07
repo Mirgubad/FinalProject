@@ -25,7 +25,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<IActionResult> FilterByCategory(int id)
         {
-            var questions =await _faqService.FilterByCategory(id);
+            var questions =await _faqService.FilterByCategoryId(id);
             var model = new FaqIndexVM
             {
                 Questions = questions

@@ -7,7 +7,7 @@ namespace Web.Services.Abstract
     {
         Task<List<Question>> GetQuestionsAsync(FaqIndexVM model);
 
-        Task<List<Question>> FilterByCategory(int id);
+        Task<List<Question>> FilterByCategoryId(int id);
 
 
     }

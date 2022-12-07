@@ -73,7 +73,7 @@
                                 <div class="sub-menu">
                                     <div class="sub-menu-wrapper">
                                         <a asp-action="index" asp-controller="shop">Sidebar left</a>
-                                        <a href="cart.html">Cart</a>
+                                        <a asp-action="index" asp-controller="basket">Cart</a>
                                     </div>
                                 </div>
                             </li>
@@ -137,34 +137,30 @@
                             <li>
                                 <span class="active-nav">Home</span>
                                 <div class="mn-sub-menu">
-                                    <a href="index.html" class="active-nav">Home</a>
+                                    <a asp-action="index" asp-controller="home" class="active-nav">Home</a>
                                 </div>
                             </li>
                             <li>
                                 <span>Pages</span>
                                 <div class="mn-sub-menu">
-                                    <a href="our-clinic.html">Our Clinic</a>
-                                    <a href="contact-us.html">Contact us</a>
-                                    <a href="faq.html">FAQ</a>
-                                    <a href="book-appointment.html">Book an Appointment</a>
-                                    <a href="pricings.html">Pricings</a>
-                                    <a href="schedule.html">Schedule</a>
+                                    <a asp-action="index" asp-controller="faq">FAQ</a>
+                                    <a asp-action="index" asp-controller="pricing">Pricings</a>
+
                                 </div>
                             </li>
 
                             <li>
                                 <span>Doctors</span>
                                 <div class="mn-sub-menu">
-                                    <a href="find-doctor.html">Find A Doctor</a>
-                                    <a href="doctor-single.html">Doctor Single</a>
+                                    <a asp-action="index" asp-controller="doctor">Find A Doctor</a>
                                 </div>
                             </li>
 
                             <li>
                                 <span>Departments</span>
                                 <div class="mn-sub-menu">
-                                    <a href="medical-department.html">Medical Department</a>
-                                    <a href="dental-clinic.html">Dental Clinic</a>
+                                    <a asp-action="index" asp-controller="department">Medical Department</a>
+
                                 </div>
                             </li>
                             <li>
@@ -176,8 +172,8 @@
                             <li>
                                 <span>Shop</span>
                                 <div class="mn-sub-menu">
-                                    <a href="sidebar-left.html">Sidebar left</a>
-                                    <a href="cart.html">Cart</a>
+                                    <a asp-action="index" asp-controller="shop">Sidebar left</a>
+                                    <a asp-action="index" asp-controller="basket">Cart</a>
                                     <a href="checkout.html">Checkout</a>
                                 </div>
                             </li>
@@ -337,7 +333,7 @@
         });
     </script>
     <!--jquery-->
-    <script src="~/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- local storage -->
     <script src="~/assets/js/jquery.shoppingcart.js"></script>
     <!--CountTo-->
@@ -347,7 +343,7 @@
     <!--bootstrap-->
     <script src="~/assets/bootstrap/bootstrap.min.js"></script>
     <!--javascript-->
-    <script src="~/assets/js/script.js"></script>
+    @*  <script src="~/assets/js/script.js"></script>*@
     <script src="~/assets/js/custom.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <!--scripts end-->

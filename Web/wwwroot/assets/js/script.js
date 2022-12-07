@@ -541,7 +541,7 @@ $(document).ready(function () {
     //#endregion search product on enter press
     //#endregion search product
   }
-  SearchProduct()
+ /* SearchProduct()*/
 
   // #region OpenMiniCart
   function OpenMiniCart() {
@@ -556,312 +556,312 @@ $(document).ready(function () {
   // #region TranferringtoCart
   let cartProduct;
 
-  function TranferringtoMiniCart() {
-    $(document).on('click', '.add-basket', function () {
-      // #region Clearing No-item-text
-      $('.no-cart-item').text('')
-      // #endregion Clearing No-item-text
+  //function TranferringtoMiniCart() {
+  //  $(document).on('click', '.add-basket', function () {
+  //    // #region Clearing No-item-text
+  //    $('.no-cart-item').text('')
+  //    // #endregion Clearing No-item-text
 
-      // #region Showing Elements if MiniCart has Item
-      $('.total-price').show();
-      $('.mini-cart .button').show();
-      // #endregion Showing Elements if MiniCart has Item
+  //    // #region Showing Elements if MiniCart has Item
+  //    $('.total-price').show();
+  //    $('.mini-cart .button').show();
+  //    // #endregion Showing Elements if MiniCart has Item
 
-      // #region This element's add icon change to View Basket
-      $(this).addClass('view-basket').removeClass('add-basket').text('View Basket');
-      // #endregion This element's add icon change to View Basket
+  //    // #region This element's add icon change to View Basket
+  //    $(this).addClass('view-basket').removeClass('add-basket').text('View Basket');
+  //    // #endregion This element's add icon change to View Basket
 
-      // #region Choosing elements add to LocalStorage
-      $.shoppingcart('add', {
-        'id': $(this).parent().parent().parent().attr('id'),
-        'image': $(this).parent().parent().css('background-image'),
-        'name': $(this).parent().parent().siblings().children().eq(0).text(),
-        'price': parseFloat($(this).parent().parent().siblings().children('p').children('.price').text()),
-        'count': 1
-      });
-      // #endregion Choosing elements add to LocalStorage
+  //    // #region Choosing elements add to LocalStorage
+  //    $.shoppingcart('add', {
+  //      'id': $(this).parent().parent().parent().attr('id'),
+  //      'image': $(this).parent().parent().css('background-image'),
+  //      'name': $(this).parent().parent().siblings().children().eq(0).text(),
+  //      'price': parseFloat($(this).parent().parent().siblings().children('p').children('.price').text()),
+  //      'count': 1
+  //    });
+  //    // #endregion Choosing elements add to LocalStorage
 
-      // #region Creating items in MiniCart
-      cartProduct = $.shoppingcart('getById', $(this).parent().parent().parent().attr('id'));
-      let cartProductImage = $(`<div class='cart-product-image' style='background-image: ${$(cartProduct).attr('image')}' ></div>`)
-      let cartProductName = $(`<p class='cart-product-name'>${$(cartProduct).attr('name')}</p>`)
-      let cartProductPriceQuantity = $(`<span class='cart-product-price-quantity'>${$(cartProduct).attr('count')} ×  $${$(cartProduct).attr('price')}</span>`)
-      let cartItem = $(`<li id='${$(this).parent().parent().parent().attr('id')}' class='cart-item'></li>`)
-      let cartItemLeft = $(`<div class="cart-item-left"></div>`)
-      let cartItemRight = $(`<div class="cart-item-right"></div>`)
-      let deleteButton = $(`<i class="far fa-trash-alt delete-btn"></i>`)
-      // #endregion Creating items in MiniCart
+  //    // #region Creating items in MiniCart
+  //    cartProduct = $.shoppingcart('getById', $(this).parent().parent().parent().attr('id'));
+  //    let cartProductImage = $(`<div class='cart-product-image' style='background-image: ${$(cartProduct).attr('image')}' ></div>`)
+  //    let cartProductName = $(`<p class='cart-product-name'>${$(cartProduct).attr('name')}</p>`)
+  //    let cartProductPriceQuantity = $(`<span class='cart-product-price-quantity'>${$(cartProduct).attr('count')} ×  $${$(cartProduct).attr('price')}</span>`)
+  //    let cartItem = $(`<li id='${$(this).parent().parent().parent().attr('id')}' class='cart-item'></li>`)
+  //    let cartItemLeft = $(`<div class="cart-item-left"></div>`)
+  //    let cartItemRight = $(`<div class="cart-item-right"></div>`)
+  //    let deleteButton = $(`<i class="far fa-trash-alt delete-btn"></i>`)
+  //    // #endregion Creating items in MiniCart
 
-      // # region Append items to MiniCart
-      $(cartItemLeft).append(cartProductImage)
-      $(cartItemRight).append(cartProductName)
-      $(cartItemRight).append(cartProductPriceQuantity)
-      $(cartItem).append(cartItemLeft)
-      $(cartItem).append(cartItemRight)
-      $(cartItem).append(deleteButton)
-      $('.cart-items').append(cartItem)
-      // # endregion Append items to MiniCart
-
-
-      // #region Relation MiniCart
-      // #region number over basket
-      $('.cart-items-count').text($.shoppingcart('getCount'))
-      // #endregion number over basket
-      // #region total price in MiniCart
-      $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
-      // #region total price in MiniCart
-      // #endregion Relation MiniCart
+  //    // # region Append items to MiniCart
+  //    $(cartItemLeft).append(cartProductImage)
+  //    $(cartItemRight).append(cartProductName)
+  //    $(cartItemRight).append(cartProductPriceQuantity)
+  //    $(cartItem).append(cartItemLeft)
+  //    $(cartItem).append(cartItemRight)
+  //    $(cartItem).append(deleteButton)
+  //    $('.cart-items').append(cartItem)
+  //    // # endregion Append items to MiniCart
 
 
-      ScrollingMiniCart()
-      DeletingIteminMiniCart()
-    })
-  }
-  TranferringtoMiniCart()
+  //    // #region Relation MiniCart
+  //    // #region number over basket
+  //    $('.cart-items-count').text($.shoppingcart('getCount'))
+  //    // #endregion number over basket
+  //    // #region total price in MiniCart
+  //    $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
+  //    // #region total price in MiniCart
+  //    // #endregion Relation MiniCart
+
+
+  //    ScrollingMiniCart()
+  //    DeletingIteminMiniCart()
+  //  })
+  //}
+  //TranferringtoMiniCart()
   // #region TranferringtoCart
 
 
   //#region Get Cart Items in Cart
-  function GetCartItemsinMiniCart() {
+  //function GetCartItemsinMiniCart() {
 
-    // #region Showing Elements According to Item Count
-    let allCartItems = $.shoppingcart('getAll')
-    if ($(allCartItems).length > 0) {
-      $('.no-cart-item').text('');
-      $('.total-price').show();
-      $('.mini-cart .button').show();
-    } else {
-      $('.total-price').hide()
-      $('.mini-cart .button').hide();
-    }
-    // #endregion Showing Elements According to Item Count
-
-
-    for (const id in allCartItems)
-      if (allCartItems.hasOwnProperty(id)) {
-        let cartItm = allCartItems[id];
-
-        $(cartItm).each(function () {
-
-          // #region Creating Items in MiniCart from LocalStorage
-          let cartItem = $(`<div id='${$(this).attr('id')}' class='cart-item'></div>`)
-          let cartItemLeft = $(`<div class="cart-item-left"></div>`)
-          let cartItemRight = $(`<div class="cart-item-right"></div>`)
-          let cartProductImage = $(`<div class='cart-product-image' style='background-image: ${$(this).attr('image')}' ></div>`)
-          let cartProductName = $(`<p class='cart-product-name'>${$(this).attr('name')}</p>`)
-          let cartProductPriceQuantity = $(`<span class='cart-product-price-quantity'>${$(this).attr('count')} ×  $${$(this).attr('price')}</span>`)
-          let deleteButton = $(`<i class="far fa-trash-alt delete-btn"></i>`)
-          // #endregion Creating Items in MiniCart from LocalStorage
-
-          // #region Append to MiniCart
-          $(cartItemLeft).append(cartProductImage)
-          $(cartItemRight).append(cartProductName)
-          $(cartItemRight).append(cartProductPriceQuantity)
-          $(cartItem).append(cartItemLeft)
-          $(cartItem).append(cartItemRight)
-          $(cartItem).append(deleteButton)
-          $('.cart-items').append(cartItem)
-          // #region Append to MiniCart
+  //  // #region Showing Elements According to Item Count
+  //  let allCartItems = $.shoppingcart('getAll')
+  //  if ($(allCartItems).length > 0) {
+  //    $('.no-cart-item').text('');
+  //    $('.total-price').show();
+  //    $('.mini-cart .button').show();
+  //  } else {
+  //    $('.total-price').hide()
+  //    $('.mini-cart .button').hide();
+  //  }
+  //  // #endregion Showing Elements According to Item Count
 
 
-          // #region Relation MiniCart
-          // #region number over basket
-          $('.cart-items-count').text($.shoppingcart('getCount'))
-          // #endregion number over basket
-          // #region total price in MiniCart
-          $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
-          // #region total price in MiniCart
-          // #endregion Relation MiniCart
+  //  for (const id in allCartItems)
+  //    if (allCartItems.hasOwnProperty(id)) {
+  //      let cartItm = allCartItems[id];
 
-          DeletingIteminMiniCart()
-          ScrollingMiniCart()
-        });
-      }
+  //      $(cartItm).each(function () {
 
-    // #region Showing View Basket Text after Reload Page
-    for (let i = 0; i < $('.cart-items .cart-item').length; i++) {
-      let activeID = ($('.cart-items .cart-item').eq(i).attr('id'))
-      $(`#${activeID}.productt`).children('.product-image').children().children('.add-basket').addClass('view-basket').removeClass('add-basket').text('View Basket');
-    }
-    // #endregion Showing View Basket Text after Reload Page
-  }
-  GetCartItemsinMiniCart()
+  //        // #region Creating Items in MiniCart from LocalStorage
+  //        let cartItem = $(`<div id='${$(this).attr('id')}' class='cart-item'></div>`)
+  //        let cartItemLeft = $(`<div class="cart-item-left"></div>`)
+  //        let cartItemRight = $(`<div class="cart-item-right"></div>`)
+  //        let cartProductImage = $(`<div class='cart-product-image' style='background-image: ${$(this).attr('image')}' ></div>`)
+  //        let cartProductName = $(`<p class='cart-product-name'>${$(this).attr('name')}</p>`)
+  //        let cartProductPriceQuantity = $(`<span class='cart-product-price-quantity'>${$(this).attr('count')} ×  $${$(this).attr('price')}</span>`)
+  //        let deleteButton = $(`<i class="far fa-trash-alt delete-btn"></i>`)
+  //        // #endregion Creating Items in MiniCart from LocalStorage
+
+  //        // #region Append to MiniCart
+  //        $(cartItemLeft).append(cartProductImage)
+  //        $(cartItemRight).append(cartProductName)
+  //        $(cartItemRight).append(cartProductPriceQuantity)
+  //        $(cartItem).append(cartItemLeft)
+  //        $(cartItem).append(cartItemRight)
+  //        $(cartItem).append(deleteButton)
+  //        $('.cart-items').append(cartItem)
+  //        // #region Append to MiniCart
+
+
+  //        // #region Relation MiniCart
+  //        // #region number over basket
+  //        $('.cart-items-count').text($.shoppingcart('getCount'))
+  //        // #endregion number over basket
+  //        // #region total price in MiniCart
+  //        $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
+  //        // #region total price in MiniCart
+  //        // #endregion Relation MiniCart
+
+  //        DeletingIteminMiniCart()
+  //        ScrollingMiniCart()
+  //      });
+  //    }
+
+  //  // #region Showing View Basket Text after Reload Page
+  //  for (let i = 0; i < $('.cart-items .cart-item').length; i++) {
+  //    let activeID = ($('.cart-items .cart-item').eq(i).attr('id'))
+  //    $(`#${activeID}.productt`).children('.product-image').children().children('.add-basket').addClass('view-basket').removeClass('add-basket').text('View Basket');
+  //  }
+  //  // #endregion Showing View Basket Text after Reload Page
+  //}
+  //GetCartItemsinMiniCart()
   //#endregion Get Cart Items in Cart
 
   //  #region DeletingCartItem
-  function DeletingIteminMiniCart() {
-    $(document).on('click', '.delete-btn', function () {
+  //function DeletingIteminMiniCart() {
+  //  $(document).on('click', '.delete-btn', function () {
 
-      // #region Deleting Item from LocalStorage
-      $.shoppingcart('remove', {
-        'id': $(this).parent().attr('id')
-      });
-      // #endregion Deleting Item from LocalStorage
-      $(this).parent().remove()
-      // #region Showing Again Basket Icon
-      $(`#${$(this).parent().attr('id')}.productt`).children('.product-image').children().children('.view-basket').addClass('add-basket').removeClass('view-basket').text('').append('<i class="fas fa-shopping-basket"></i>')
-      // #endregion Showing Again Basket Icon
+  //    // #region Deleting Item from LocalStorage
+  //    $.shoppingcart('remove', {
+  //      'id': $(this).parent().attr('id')
+  //    });
+  //    // #endregion Deleting Item from LocalStorage
+  //    $(this).parent().remove()
+  //    // #region Showing Again Basket Icon
+  //    $(`#${$(this).parent().attr('id')}.productt`).children('.product-image').children().children('.view-basket').addClass('add-basket').removeClass('view-basket').text('').append('<i class="fas fa-shopping-basket"></i>')
+  //    // #endregion Showing Again Basket Icon
 
-      // #region Relation Cart
-      $(`#${$(this).parent().attr('id')}.pr`).remove()
-      $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
-      // #endregion Relation Cart
+  //    // #region Relation Cart
+  //    $(`#${$(this).parent().attr('id')}.pr`).remove()
+  //    $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
+  //    // #endregion Relation Cart
 
-      // #region Relation MiniCart
-      // #region number over basket
-      $('.cart-items-count').text($.shoppingcart('getCount'))
-      // #endregion number over basket
-      // #region total price in MiniCart
-      $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
-      // #region total price in MiniCart
-      // #endregion Relation MiniCart
-
-
-      //#region Relation Checkout
-      $(`.pro-table tbody #${$(this).parent().attr('id')}.pro`).remove()
-      $('.pro-sub-price').text($.shoppingcart('getPrice').toFixed(2))
-      $('.pro-total-price').text($.shoppingcart('getPrice').toFixed(2))
-      //#endregion Relation Checkout
-
-      ShowingEmptyAlertMiniCart()
-      ShowingEmptyAlert()
-      ShowingEmptyAlertCheckout()
-      ScrollingMiniCart()
+  //    // #region Relation MiniCart
+  //    // #region number over basket
+  //    $('.cart-items-count').text($.shoppingcart('getCount'))
+  //    // #endregion number over basket
+  //    // #region total price in MiniCart
+  //    $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
+  //    // #region total price in MiniCart
+  //    // #endregion Relation MiniCart
 
 
-    })
-  }
+  //    //#region Relation Checkout
+  //    $(`.pro-table tbody #${$(this).parent().attr('id')}.pro`).remove()
+  //    $('.pro-sub-price').text($.shoppingcart('getPrice').toFixed(2))
+  //    $('.pro-total-price').text($.shoppingcart('getPrice').toFixed(2))
+  //    //#endregion Relation Checkout
+
+  //    ShowingEmptyAlertMiniCart()
+  //    ShowingEmptyAlert()
+  //    ShowingEmptyAlertCheckout()
+  //    ScrollingMiniCart()
+
+
+  //  })
+  //}
   //  #endregion DeletingCartItem
 
   //  #region ShowProductsinCart
-  function GetProductsinCart() {
-    // #region Getting All LocalStorage Items
-    let allCartItems = $.shoppingcart('getAll')
-    // #endregion Getting All LocalStorage Items
+  //function GetProductsinCart() {
+  //  // #region Getting All LocalStorage Items
+  //  let allCartItems = $.shoppingcart('getAll')
+  //  // #endregion Getting All LocalStorage Items
 
-    for (const id in allCartItems)
-      if (allCartItems.hasOwnProperty(id)) {
-        let cartItm = allCartItems[id];
+  //  for (const id in allCartItems)
+  //    if (allCartItems.hasOwnProperty(id)) {
+  //      let cartItm = allCartItems[id];
 
-        $(cartItm).each(function () {
-          // #region creating products in Cart Page
-          let pr = $(`<tr id='${$(this).attr('id')}' class="pr"></tr>`)
-          let prImage = $(`<td class="pr-image"><div class="pr-img" style='background-image: ${$(this).attr('image')}'></div></td>`)
-          let prName = $(`<td class="pr-name text-left" data-title="Product :">${$(this).attr('name')}</td>`)
-          let prPrice = $(`<td class="pr-price" data-title="Price :"><div><span>$</span><span class="pr-price-number">${$(this).attr('price')}</span></div></td>`)
-          let prQuantity = $(`<td class="pr-quantity" data-title="Quantity :"> <div class="q-input">
-          <input type="number" name="" id="" min="1" value="${$(this).attr('count')}" class="quantity-input">
-          <i class="fas fa-minus decrease"></i>
-          <i class="fas fa-plus increase"></i>
-          </div>
-          </td>`)
-          let prTotalPrice = $(`<td class="pr-t-price" data-title="Total :"><div><span>$</span><span>${($(this).attr('price')*$(this).attr('count')).toFixed(2)}</span></div></td>`)
-          let prRemove = $(`<td class="pr-remove"><i class="fas fa-times x"></i></td>`)
-          // #region creating products in Cart Page
-
-
-          // #region Append to Page
-          $(pr).append(prImage)
-          $(pr).append(prName)
-          $(pr).append(prPrice)
-          $(pr).append(prQuantity)
-          $(pr).append(prTotalPrice)
-          $(pr).append(prRemove)
-          $('.product-table tbody').append(pr)
-          // #region Append to Page
-
-          // #region Showing Price after Page Load
-          $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
-          // #endregion Showing Price after Page Load
+  //      $(cartItm).each(function () {
+  //        // #region creating products in Cart Page
+  //        let pr = $(`<tr id='${$(this).attr('id')}' class="pr"></tr>`)
+  //        let prImage = $(`<td class="pr-image"><div class="pr-img" style='background-image: ${$(this).attr('image')}'></div></td>`)
+  //        let prName = $(`<td class="pr-name text-left" data-title="Product :">${$(this).attr('name')}</td>`)
+  //        let prPrice = $(`<td class="pr-price" data-title="Price :"><div><span>$</span><span class="pr-price-number">${$(this).attr('price')}</span></div></td>`)
+  //        let prQuantity = $(`<td class="pr-quantity" data-title="Quantity :"> <div class="q-input">
+  //        <input type="number" name="" id="" min="1" value="${$(this).attr('count')}" class="quantity-input">
+  //        <i class="fas fa-minus decrease"></i>
+  //        <i class="fas fa-plus increase"></i>
+  //        </div>
+  //        </td>`)
+  //        let prTotalPrice = $(`<td class="pr-t-price" data-title="Total :"><div><span>$</span><span>${($(this).attr('price')*$(this).attr('count')).toFixed(2)}</span></div></td>`)
+  //        let prRemove = $(`<td class="pr-remove"><i class="fas fa-times x"></i></td>`)
+  //        // #region creating products in Cart Page
 
 
-          DeletingProductinCart()
-          ShowingEmptyAlert()
+  //        // #region Append to Page
+  //        $(pr).append(prImage)
+  //        $(pr).append(prName)
+  //        $(pr).append(prPrice)
+  //        $(pr).append(prQuantity)
+  //        $(pr).append(prTotalPrice)
+  //        $(pr).append(prRemove)
+  //        $('.product-table tbody').append(pr)
+  //        // #region Append to Page
 
-        });
-      }
-  }
-  GetProductsinCart()
+  //        // #region Showing Price after Page Load
+  //        $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
+  //        // #endregion Showing Price after Page Load
+
+
+  //        DeletingProductinCart()
+  //        ShowingEmptyAlert()
+
+  //      });
+  //    }
+  //}
+  //GetProductsinCart()
   //  #endregion ShowProductsinCart
 
 
   // #region Delete Product in Cart
-  function DeletingProductinCart() {
-    $(document).on('click', '.x', function () {
-      // #region Deleting Item In Cart Page
-      $(this).parent().parent().remove()
-      // #endregion Deleting Item In Cart Page
+  //function DeletingProductinCart() {
+  //  $(document).on('click', '.x', function () {
+  //    // #region Deleting Item In Cart Page
+  //    $(this).parent().parent().remove()
+  //    // #endregion Deleting Item In Cart Page
 
-      // #region Deleting Item From LocalStorage
-      $.shoppingcart('remove', {
-        'id': $(this).parent().parent().attr('id')
-      });
-      // #endregion Deleting Item From LocalStorage
+  //    // #region Deleting Item From LocalStorage
+  //    $.shoppingcart('remove', {
+  //      'id': $(this).parent().parent().attr('id')
+  //    });
+  //    // #endregion Deleting Item From LocalStorage
 
-      // #region Deleting Element from MiniCart
-      $(`#${$(this).parent().parent().attr('id')}.cart-item`).remove()
-      // #endregion Deleting Element from MiniCart
+  //    // #region Deleting Element from MiniCart
+  //    $(`#${$(this).parent().parent().attr('id')}.cart-item`).remove()
+  //    // #endregion Deleting Element from MiniCart
 
-      // #region Relation MiniCart
-      // #region number over basket
-      $('.cart-items-count').text($.shoppingcart('getCount'))
-      // #endregion number over basket
-      // #region total price in MiniCart
-      $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
-      // #region total price in MiniCart
-      // #endregion Relation MiniCart
+  //    // #region Relation MiniCart
+  //    // #region number over basket
+  //    $('.cart-items-count').text($.shoppingcart('getCount'))
+  //    // #endregion number over basket
+  //    // #region total price in MiniCart
+  //    $('.total-price-number').text($.shoppingcart('getPrice').toFixed(2))
+  //    // #region total price in MiniCart
+  //    // #endregion Relation MiniCart
 
-      // #region Showing Elements in MiniCart According to Cart item
-      if ($('.cart-item').length == 0) {
-        $('.no-cart-item').text('No Products In The Basket')
-        $('.total-price').hide()
-        $('.mini-cart .button').hide();
-      }
-      // #region Showing Elements in MiniCart According to Cart item
+  //    // #region Showing Elements in MiniCart According to Cart item
+  //    if ($('.cart-item').length == 0) {
+  //      $('.no-cart-item').text('No Products In The Basket')
+  //      $('.total-price').hide()
+  //      $('.mini-cart .button').hide();
+  //    }
+  //    // #region Showing Elements in MiniCart According to Cart item
 
-      // #region Showing Price in Cart Page after Deleting Item 
-      $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
-      // #endregion Showing Price in Cart Page after Deleting Item
+  //    // #region Showing Price in Cart Page after Deleting Item 
+  //    $('.total-price-num').text($.shoppingcart('getPrice').toFixed(2))
+  //    // #endregion Showing Price in Cart Page after Deleting Item
 
-      ShowingEmptyAlertMiniCart()
-      ScrollingMiniCart()
-      ShowingEmptyAlert()
-    })
-  }
+  //    ShowingEmptyAlertMiniCart()
+  //    ScrollingMiniCart()
+  //    ShowingEmptyAlert()
+  //  })
+  //}
   // #endregion Delete Product in Cart
 
 
-  function GetProductsinCheckout() {
-    // #region Getting All LocalStorage items
-    let allCartItems = $.shoppingcart('getAll')
-    // #region Getting All LocalStorage items
+  //function GetProductsinCheckout() {
+  //  // #region Getting All LocalStorage items
+  //  let allCartItems = $.shoppingcart('getAll')
+  //  // #region Getting All LocalStorage items
 
 
-    for (const id in allCartItems)
-      if (allCartItems.hasOwnProperty(id)) {
-        let cartItm = allCartItems[id];
+  //  for (const id in allCartItems)
+  //    if (allCartItems.hasOwnProperty(id)) {
+  //      let cartItm = allCartItems[id];
 
-        // #region Creating Items in Checkout
-        $(cartItm).each(function () {
-          let tr = $(`<tr class="pro" id='${$(this).attr('id')}'></tr>`)
-          let product_Count = $(`<td>${$(this).attr('name')} × ${$(this).attr('count')}</td>`)
-          let proTotalPrice = $(`<td><span>$</span><span>${($(this).attr('price')*$(this).attr('count')).toFixed(2)}</span></td>`)
-          $(tr).append(product_Count)
-          $(tr).append(proTotalPrice)
-          $('.pro-table tbody').append(tr)
-        });
-      }
-    let proSubPrice = $(`<span>$</span><span>${$.shoppingcart('getPrice').toFixed(2)}</span>`)
-    let proTotalPrice = $(`<span>$</span><span>${$.shoppingcart('getPrice').toFixed(2)}</span>`)
-    // #region Creating Items in Checkout
+  //      // #region Creating Items in Checkout
+  //      $(cartItm).each(function () {
+  //        let tr = $(`<tr class="pro" id='${$(this).attr('id')}'></tr>`)
+  //        let product_Count = $(`<td>${$(this).attr('name')} × ${$(this).attr('count')}</td>`)
+  //        let proTotalPrice = $(`<td><span>$</span><span>${($(this).attr('price')*$(this).attr('count')).toFixed(2)}</span></td>`)
+  //        $(tr).append(product_Count)
+  //        $(tr).append(proTotalPrice)
+  //        $('.pro-table tbody').append(tr)
+  //      });
+  //    }
+  //  let proSubPrice = $(`<span>$</span><span>${$.shoppingcart('getPrice').toFixed(2)}</span>`)
+  //  let proTotalPrice = $(`<span>$</span><span>${$.shoppingcart('getPrice').toFixed(2)}</span>`)
+  //  // #region Creating Items in Checkout
 
-    // #region Append items to Checkout Page 
-    $('.pro-sub-price').append(proSubPrice)
-    $('.pro-total-price').append(proTotalPrice)
-    // #region Append items to Checkout Page 
-    ShowingEmptyAlertCheckout()
-  }
-  GetProductsinCheckout()
+  //  // #region Append items to Checkout Page 
+  //  $('.pro-sub-price').append(proSubPrice)
+  //  $('.pro-total-price').append(proTotalPrice)
+  //  // #region Append items to Checkout Page 
+  //  ShowingEmptyAlertCheckout()
+  //}
+  //GetProductsinCheckout()
 
 
   //  #region ScrollingMiniCart
@@ -876,44 +876,44 @@ $(document).ready(function () {
 
 
   //  #region ChangeInputValueinCart
-  function ChangeInputValue() {
-    // #region increasing inputValue in Cart
-    $(document).on('click', '.increase', function () {
-      var oldValue = parseInt($(this).siblings('.quantity-input').val());
-      var newVal = oldValue + 1;
-      $(this).siblings('.quantity-input').val(newVal);
-      // #region Changing Item Count in LocalStorage when Click Increase Button
-      $.shoppingcart('edit', {
-        'id': `${$(this).parent().parent().parent().attr('id')}`,
-        'count': $(this).siblings('.quantity-input').val()
-      })
-      // #endregion Changing Item Count in LocalStorage when Click Increase Button
-    })
-    // #endregion increasing inputValue in Cart
+  //function ChangeInputValue() {
+  //  // #region increasing inputValue in Cart
+  //  $(document).on('click', '.increase', function () {
+  //    var oldValue = parseInt($(this).siblings('.quantity-input').val());
+  //    var newVal = oldValue + 1;
+  //    $(this).siblings('.quantity-input').val(newVal);
+  //    // #region Changing Item Count in LocalStorage when Click Increase Button
+  //    $.shoppingcart('edit', {
+  //      'id': `${$(this).parent().parent().parent().attr('id')}`,
+  //      'count': $(this).siblings('.quantity-input').val()
+  //    })
+  //    // #endregion Changing Item Count in LocalStorage when Click Increase Button
+  //  })
+  //  // #endregion increasing inputValue in Cart
 
 
-    // #region decreasing inputValue in Cart
-    $(document).on('click', '.decrease', function () {
-      let min = $(this).siblings('.quantity-input').attr('min');
-      var oldValue = parseInt($(this).siblings('.quantity-input').val());
-      if (oldValue <= min) {
-        var newVal = oldValue;
-      } else {
-        var newVal = oldValue - 1;
-      }
-      // #region Changing Item Count in LocalStorage when Click Decrease Button
-      $(this).siblings('.quantity-input').val(newVal);
-      $.shoppingcart('edit', {
-        'id': `${$(this).parent().parent().parent().attr('id')}`,
-        'count': $(this).siblings('.quantity-input').val()
-      })
-      // #endregion Changing Item Count in LocalStorage when Click Decrease Button
-    })
-    // #region decreasing inputValue in Cart
+  //  // #region decreasing inputValue in Cart
+  //  //$(document).on('click', '.decrease', function () {
+  //  //  let min = $(this).siblings('.quantity-input').attr('min');
+  //  //  var oldValue = parseInt($(this).siblings('.quantity-input').val());
+  //  //  if (oldValue <= min) {
+  //  //    var newVal = oldValue;
+  //  //  } else {
+  //  //    var newVal = oldValue - 1;
+  //  //  }
+  //  //  // #region Changing Item Count in LocalStorage when Click Decrease Button
+  //  //  $(this).siblings('.quantity-input').val(newVal);
+  //  //  $.shoppingcart('edit', {
+  //  //    'id': `${$(this).parent().parent().parent().attr('id')}`,
+  //  //    'count': $(this).siblings('.quantity-input').val()
+  //  //  })
+  //  //  // #endregion Changing Item Count in LocalStorage when Click Decrease Button
+  //  //})
+  //  // #region decreasing inputValue in Cart
 
 
-  }
-  ChangeInputValue()
+  //}
+ /* ChangeInputValue()*/
   //  #endregion ChangeInputValueinCart
 
 
@@ -936,7 +936,7 @@ $(document).ready(function () {
       location.reload()
     })
   }
-  UpdateCart()
+/*  UpdateCart()*/
   // #endregion UpdatingCart
 
 
@@ -947,7 +947,7 @@ $(document).ready(function () {
       location.reload();
     })
   }
-  ClearCart()
+/*  ClearCart()*/
   // #endregion ClearingCart
 
 

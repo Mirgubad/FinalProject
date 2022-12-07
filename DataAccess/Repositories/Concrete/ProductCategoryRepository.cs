@@ -24,5 +24,6 @@ namespace DataAccess.Repositories.Concrete
             var categories = await _context.ProductCategories.Include(p => p.Products).ToListAsync();
             return categories;
         }
+    
     }
 }

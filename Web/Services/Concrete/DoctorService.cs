@@ -25,7 +25,7 @@ namespace Web.Services.Concrete
 
         public async Task<DoctorIndexVM> GetAllDoctorAsync(DoctorIndexVM model)
         {
-            var doctors = await _doctorRepository.PaginateBlogAsync(model.Page, model.Take);
+            var doctors = await _doctorRepository.PaginateDoctorAsync(model.Page, model.Take);
             var pageCount = await _doctorRepository.GetPageCountAsync(model.Take);
             model = new DoctorIndexVM
             {

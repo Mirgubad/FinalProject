@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace DataAccess.Contexts
     public class User : IdentityUser
     {
         public string Fullname { get; set; }
+        public Basket Basket { get; set; }
+
     }
 }
