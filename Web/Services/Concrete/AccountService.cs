@@ -56,7 +56,19 @@ namespace Web.Services.Concrete
         public async Task<bool> RegisterAsync(AccountRegisterVM model)
         {
             if (!_modelState.IsValid) return false;
+            var isExistUserName = _userManager.Users.FirstOrDefault(u => u.UserName == model.Username);
+            if (isExistUserName != null)
+            {
+                _modelState.AddModelError("UserName", $"{model.Username} has already taken");
+                return false;
+            }
 
+            var isExistEmail = _userManager.Users.FirstOrDefault(u => u.Email == model.Email);
+            if (isExistEmail != null)
+            {
+                _modelState.AddModelError("Email", $"{model.Email} has already taken");
+                return false;
+            }
             var user = new User
             {
                 UserName = model.Username,
