@@ -15,9 +15,10 @@ namespace Web.Controllers
         {
             _doctorService = doctorService;
         }
-        public async Task<IActionResult> Index(DoctorIndexVM model)
+        public async Task<IActionResult> Index(DoctorIndexVM model,string? name)
         {
-            model = await _doctorService.GetAllDoctorAsync(model);
+            model = await _doctorService.GetAllDoctorAsync(model,name);
+       
             return View(model);
         }
 
@@ -28,16 +29,16 @@ namespace Web.Controllers
             return View(doctor);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> FilterByName(string name,DoctorIndexVM model)
-        {
-            var doctor = await _doctorService.FilterByName(name);
-            model = new DoctorIndexVM
-            {
-                Doctors = doctor
-            };
-            return PartialView("_DoctorPartial", model);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> FilterByName(string name,DoctorIndexVM model)
+        //{
+        //    var doctor = await _doctorService.FilterByName(name);
+        //    model = new DoctorIndexVM
+        //    {
+        //        Doctors = doctor
+        //    };
+        //    return PartialView("_DoctorPartial", model);
+        //}
 
 
     }

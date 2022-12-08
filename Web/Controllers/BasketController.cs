@@ -62,5 +62,7 @@ namespace Web.Controllers
             var model = await _basketService.GetBasketProducts();
             return PartialView("_MiniBasketPartial", model);
         }
+
+       
     }
 }

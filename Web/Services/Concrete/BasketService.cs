@@ -2,6 +2,7 @@
 using DataAccess.Contexts;
 using DataAccess.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Web.Services.Abstract;
 using Web.ViewModels.Basket;
 
@@ -30,12 +31,12 @@ namespace Web.Services.Concrete
 
         }
 
-        public async Task<bool> Add(int modelId)
+        public async Task<bool> Add(int productId)
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             if (user == null) return false;
 
-            var product = await _productRepository.GetAsync(modelId);
+            var product = await _productRepository.GetAsync(productId);
             if (product == null) return false;
 
             var basket = await _basketRepository.GetBasketWithProducts(user.Id);
@@ -50,7 +51,7 @@ namespace Web.Services.Concrete
                 await _basketRepository.CreateAsync(basket);
             }
 
-            var basketProduct = await _basketProductRepository.GetBasketProducts(modelId, basket.Id);
+            var basketProduct = await _basketProductRepository.GetBasketProducts(productId, basket.Id);
             if (basketProduct != null)
             {
                 basketProduct.Quantity++;
@@ -155,6 +156,9 @@ namespace Web.Services.Concrete
             await _basketProductRepository.DeleteProductAsync(product.Id);
             return true;
         }
+
+    
+      
     }
 }
 

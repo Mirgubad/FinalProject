@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,8 +34,12 @@ namespace DataAccess.Repositories.Concrete
             var basket = await _context.Baskets
                 .Include(b => b.BasketProducts)
                 .ThenInclude(bp => bp.Product)
-                .FirstOrDefaultAsync(b => b.UserId == userId);   
+                .FirstOrDefaultAsync(b => b.UserId == userId);
             return basket;
         }
+
+
+       
+
     }
 }

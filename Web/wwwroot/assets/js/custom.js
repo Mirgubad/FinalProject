@@ -14,35 +14,38 @@
         })
     })
 
+    //$("#doctors_form").submit(function (e) {
+    //    e.preventDefault();
+    //});
 
 
-    $(document).on("click", '#search-doctor', function () {
-        var name = $('#FullName').val()
-        $.ajax({
-            method: "GET",
-            url: "/doctor/filterbyname",
-            data: {
-                name: name
-            },
-            success: function (result) {
-                if (name != "") {
-                    $('#doctor-items').html("");
-                    $('#doctor-items').append(result);
-                }
-                else {
-                    $('#FullName').attr("placeholder", "Type Something")
-                }
+    //$(document).on("click", '#search-doctor', function () {
+    //    var name = $('#FullName').val()
+    //    $.ajax({
+    //        method: "GET",
+    //        url: "/doctor/filterbyname",
+    //        data: {
+    //            name: name
+    //        },
+    //        success: function (result) {
+    //            if (name != "") {
+    //                $('#doctor-items').html("");
+    //                $('#doctor-items').append(result);
+    //            }
+    //            else {
+    //                $('#FullName').attr("placeholder", "Type Something")
+    //            }
 
-            }
-        })
-    })
+    //        }
+    //    })
+    //})
 
 
     $(document).on("click", '.category', function () {
         var id = $(this).data('id')
         $.ajax({
             method: "GET",
-            url: "/shop/filterbycategory",
+            url: "/shop/index",
             data: {
                 id: id
             },
@@ -57,30 +60,30 @@
         })
     })
 
-    $(document).on("click", '#product-search-btn', function () {
-        var name = $('#search-product').val()
-        $.ajax({
-            method: "GET",
-            url: "/shop/FilterByName",
-            data: {
-                name: name
-            },
-            success: function (result) {
-                console.log(result)
-                if (result != "") {
-                    $('#products').html("");
-                    $('#products').append(result);
-                } 
+    //$(document).on("click", '#product-search-btn', function () {
+    //    var name = $('#search-product').val()
+    //    $.ajax({
+    //        method: "GET",
+    //        url: "/shop/index",
+    //        data: {
+    //            name: name
+    //        },
+    //        success: function (result) {
+    //            console.log(result)
+    //            if (result != "") {
+    //                $('#products').html("");
+    //                $('#products').append(result);
+    //            }
 
-            }
-        })
-    })
+    //        }
+    //    })
+    //})
 
 
     $(document).on("click", '.addToCardBtn', function () {
         var id = $(this).data('id')
-        var basketCount = $('#miniBasket')
-        var count = 0;
+        var basketCount = $('#basketCount')
+        var basketCurrentCount = $('#basketCount').html()
         $.ajax({
             method: "POST",
             url: "/basket/add",
@@ -88,7 +91,10 @@
                 id: id
             },
             success: function (result) {
-                  
+                console.log(basketCount)
+                basketCurrentCount++;
+                basketCount.html("")
+                basketCount.append(basketCurrentCount)
             }
         })
 
@@ -106,10 +112,12 @@
         })
     })
 
-
     $(document).on("click", '.deleteButton', function () {
         var id = $(this).data('id')
-
+        var basketCount = $('#basketCount')
+        var basketCurrentCount = $('#basketCount').html()
+        var quantity = $(this).data('quantity')
+        var sum = basketCurrentCount - quantity
         $.ajax({
             method: "POST",
             url: "/basket/delete",
@@ -117,9 +125,11 @@
                 id: id
             },
             success: function (result) {
+                console.log(sum)
 
                 $(`.basket-product[id=${id}]`).remove();
-
+                basketCount.html("")
+                basketCount.append(sum)
             }
         })
     })
@@ -135,7 +145,7 @@
                 id: id
             },
             success: function (result) {
-               
+
             }
         })
     })
@@ -151,7 +161,7 @@
                 id: id
             },
             success: function (result) {
-               
+
             }
         })
     })

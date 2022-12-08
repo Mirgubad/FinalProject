@@ -1,6 +1,8 @@
 ﻿@using Web.ViewModels.Basket;
 @model BasketIndexVM;
-
+@{
+    ViewBag.Title = "Card";
+}
 <main>
     <section class="product-table no-select">
         <div class="container">
@@ -19,8 +21,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-
                                 @foreach (var product in Model.BasketProducts)
                                 {
                                     var sum = product.Price * product.Quantity;
@@ -37,7 +37,7 @@
                                             </div>
                                         </td>
                                         <td class="pr-t-price" data-title="Total :"><div><span>$</span><span>@sum</span></div></td>
-                                        <td class="pr-remove "><i class="fas fa-times x deleteButton" data-id="@product.Id" id="@product.Id"></i></td>.
+                                        <td class="pr-remove "><i class="fas fa-times x deleteButton" data-quantity="@product.Quantity" data-id="@product.Id" id="@product.Id"></i></td>.
                                     </tr>
                                 }
 
@@ -51,45 +51,14 @@
                                 <div class="button confirm">Confirm</div>
                             </div>
                             <div class="col-12 col-xl-4 text-center text-lg-right mt-0 mt-sm-5 mt-xl-0">
-                                <div class="button clear">Clear Cart</div>
+                                <div class="button clear">
+                                    <form method="post" asp-action="ClearBasket" asp-controller="basket">
+                                        <button type="submit"  >Clear Cart</button>
+                                    </form>
+                                </div>
                                 <div class="button update">Update Cart</div>
                                 <div class="deliver pt-5">
-                                    <!-- <div class="container">
-                                         <div class="row  deliver-parametr">
-                                             <div class="col-6 text-left">Subtotal:</div>
-                                             <div class="col-6 text-left">
-                                                 <span>$</span><span class="total-price-num"></span>
-                                             </div>
-                                         </div>
-                                         <div class="row deliver-parametr align-items-center">
-                                             <div class="col-6 text-left">Shipping:</div>
-                                             <div class="col-6 text-left">
-                                                 <div>
-                                                     <input type="radio" name="shipping" id="" class="mr-2"
-                                                        checked><span>
-                                                         Free
-                                                         Shipping
-                                                     </span>
-                                                 </div>
-                                                 <div>
-                                                     <input type="radio" name="shipping" id="" class="mr-2"><span>
-                                                         Flat
-                                                         rate
-                                                     </span>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <div class="row deliver-parametr text-left">
-                                             <div class="col-6">Total:</div>
-                                             <div class="col-6 text-left">
-                                                 <span>$</span><span class="total-price-num"></span>
-                                             </div>
-                                         </div>
-                                         <a href="checkout.html" class="button d-block mt-4 text-center">
-                                             Proceed To
-                                             Checkout
-                                         </a>
-                                     </div> -->
+                               
                                 </div>
                             </div>
                         </div>

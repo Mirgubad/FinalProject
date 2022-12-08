@@ -14,32 +14,32 @@ namespace Web.Controllers
         {
             _shopService = shopService;
         }
-        public async Task<IActionResult> Index(ShopIndexVM model)
+        public async Task<IActionResult> Index(ShopIndexVM model, string? name)
         {
-            model = await _shopService.GetAllProductsWithCategoriesAsync(model);
+            model = await _shopService.GetAllProductsWithCategoriesAsync(model, name);
             return View(model);
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> FilterByCategory(int id)
-        {
-            var products = await _shopService.FilterByCategoryId(id);
-            var model = new ShopIndexVM
-            {
-                Products = products
-            };
-            return PartialView("_ProductPartial", model);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> FilterByCategory(int id)
+        //{
+        //    var products = await _shopService.Filter(id);
+        //    var model = new ShopIndexVM
+        //    {
+        //        Products = products
+        //    };
+        //    return PartialView("_ProductPartial", model);
+        //}
 
-        public async Task<IActionResult> FilterByName(string name)
-        {
-            var products = await _shopService.FilterByName(name);
-            var model = new ShopIndexVM
-            {
-                Products = products
-            };
-            return PartialView("_ProductPartial", model);
-        }
+        //public async Task<IActionResult> FilterByName(string name)
+        //{
+        //    var products = await _shopService.FilterByName(name);
+        //    var model = new ShopIndexVM
+        //    {
+        //        Products = products
+        //    };
+        //    return PartialView("_ProductPartial", model);
+        //}
     }
 }

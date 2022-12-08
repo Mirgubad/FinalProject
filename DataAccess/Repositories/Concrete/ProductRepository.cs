@@ -22,32 +22,35 @@ namespace DataAccess.Repositories.Concrete
         public async Task<List<Product>> GetProductsWithCategoryAsync()
         {
             var products = await _context.Products.Include(ct => ct.Category).ToListAsync();
-           
+
             return products;
         }
 
 
-        public async Task<List<Product>> FilterByCategoryId(int? categoryId)
+        public async Task<IQueryable<Product>> FilterByCategoryId(IQueryable<Product> products, int? categoryId)
         {
-            return await _context.Products.Where(p => categoryId != null ? p.CategoryId == categoryId : true).ToListAsync();
+            return products.Where(p => categoryId != 0 ? p.CategoryId == categoryId : true);
         }
 
 
-        public async Task<List<Product>> PaginateProductAsync(int page, int take)
-        {
-            var products = await _context.Products.Skip((page - 1) * take).Take(take).ToListAsync();
-            return products;
-        }
 
-        public async Task<int> GetPageCountAsync(int take)
+
+        public async Task<int> GetPageCountAsync(IQueryable<Product> products, int take)
         {
-            var pageCount = await _context.Products.CountAsync();
+            var pageCount = await products.CountAsync();
             return (int)Math.Ceiling((decimal)pageCount / take);
         }
 
-        public async Task<List<Product>> FilterByName(string? name)
+
+        public async Task<IQueryable<Product>> PaginateProductAsync(IQueryable<Product> products, int page, int take)
         {
-            return await _context.Products.Where(p => !string.IsNullOrEmpty(name) ? p.Title.Contains(name) : true).ToListAsync();
+            products = products.Skip((page - 1) * take).Take(take);
+            return products;
+        }
+
+        public async Task<IQueryable<Product>> FilterByName(string? name)
+        {
+            return _context.Products.Where(d => !string.IsNullOrEmpty(name) ? d.Title.Contains(name) : true);
         }
     }
 

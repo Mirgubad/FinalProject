@@ -30,9 +30,12 @@
                         <span class="line"></span>
                         <div class="search-doctor-content">
                             <div class="search-doctor-content-wrapper">
-                                <label for="">Doctor Name</label>
-                                <input id="FullName" placeholder="Enter doctor name" class="search-doctor-input">
-                                <button id="search-doctor" class="button text-center">Search Now</button>
+                                <form method="get" asp-action="index" asp-controller="doctor" id="doctors_form" doctors_form>
+                                    <label for="">Doctor Name</label>
+                                    <input asp-for="Name" id="FullName" placeholder="Enter doctor name" class="search-doctor-input">
+                                    <button id="search-doctor" class="button text-center">Search Now</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -78,17 +81,17 @@
                                 var prevPage = Model.Page - 1;
                                 if (1 < Model.Page)
                                 {
-                                    <a asp-action="index" asp-controller="doctor" asp-route-page="@prevPage" class="pagination-element"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+                                    <a asp-action="index" asp-controller="doctor" asp-route-name="@Model.Name" asp-route-page="@prevPage" class="pagination-element"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
                                 }
 
                                 for (int i = 1; i <= Model.PageCount; i++)
                                 {
-                                    <a asp-action="index" asp-controller="doctor" asp-route-page="@i" class="@(Model.Page==i?"pagination-element pagination-active":"pagination-element")">@i</a>
+                                    <a asp-action="index" asp-controller="doctor" asp-route-page="@i" asp-route-name="@Model.Name" class="@(Model.Page==i?"pagination-element pagination-active":"pagination-element")">@i</a>
                                 }
                                 var nextPage = Model.Page + 1;
                                 if (Model.PageCount != Model.Page)
                                 {
-                                    <a asp-action="index" asp-controller="doctor" asp-route-page="@nextPage" class="pagination-element"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                    <a asp-action="index" asp-controller="doctor" asp-route-name="@Model.Name" asp-route-page="@nextPage" class="pagination-element"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                                 }
                             }
                         </div>

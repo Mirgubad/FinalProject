@@ -12,9 +12,9 @@ namespace DataAccess.Repositories.Abstract
     public interface IDoctorRepository : IRepository<Doctor>
     {
 
-        Task<List<Doctor>> PaginateDoctorAsync(int page, int take);
-        Task<int> GetPageCountAsync(int take);
-        Task<List<Doctor>> FilterByName(string? name);
+        Task<IQueryable<Doctor>> PaginateDoctorAsync(IQueryable<Doctor> doctors, int page, int take);
+        Task<int> GetPageCountAsync(IQueryable<Doctor> doctors, int take);
+        Task<IQueryable<Doctor>> FilterByName(string? name);
         Task<List<Doctor>> GetHomeDoctorsAsync();
 
 

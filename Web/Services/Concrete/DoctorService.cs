@@ -17,22 +17,25 @@ namespace Web.Services.Concrete
             _doctorRepository = doctorRepository;
         }
 
-        public Task<List<Doctor>> FilterByName(string name)
-        {
-            var doctors = _doctorRepository.FilterByName(name);
-            return doctors;
-        }
+        //public Task<List<Doctor>> FilterByName(string name)
+        //{
+        //    var doctors = _doctorRepository.FilterByName(name);
+        //    return doctors;
+        //}
 
-        public async Task<DoctorIndexVM> GetAllDoctorAsync(DoctorIndexVM model)
+        public async Task<DoctorIndexVM> GetAllDoctorAsync(DoctorIndexVM model,string? name)
         {
-            var doctors = await _doctorRepository.PaginateDoctorAsync(model.Page, model.Take);
-            var pageCount = await _doctorRepository.GetPageCountAsync(model.Take);
+            var doctors = await _doctorRepository.FilterByName(name);
+            var pageCount = await _doctorRepository.GetPageCountAsync(doctors,model.Take);
+            doctors = await _doctorRepository.PaginateDoctorAsync(doctors, model.Page, model.Take);
+
             model = new DoctorIndexVM
             {
-                Doctors = doctors,
+                Doctors =await doctors.ToListAsync(),
                 Page = model.Page,
                 Take = model.Take,
-                PageCount = pageCount
+                PageCount = pageCount,
+                Name=name,            
             };
             return model;
         }

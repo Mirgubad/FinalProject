@@ -9,5 +9,7 @@ namespace Web.ViewModels.Shop
         public int Page { get; set; } = 1;
         public int Take { get; set; } = 5;
         public int PageCount { get; set; }
+        public int CategoryId { get; set; }
+        public string Name { get; set; }
     }
 }

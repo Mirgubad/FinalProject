@@ -1,6 +1,8 @@
 ﻿@using Web.ViewModels.Shop;
 @model ShopIndexVM;
-
+@{
+    ViewBag.Title = "Shopping";
+}
 <main>
     <!-- main-frame section starts -->
     <section class="main-frame no-select" style="background-image: url(assets/images/shop-page-title.jpg);">
@@ -31,20 +33,25 @@
                         <div class="search">
                             <h4>Search</h4>
                             <div class="search-product">
-                                <input type="search" name="" id="search-product" placeholder="Search products"
-                                       class="search-product-input">
-                                <img src="assets/images/search-product-icon.png" id="product-search-btn" class="search-product-icon">
+                                <form asp-action="index" asp-controller="shop" method="get">
+                                    <input asp-for="@Model.Name" type="search" id="search-product" placeholder="Search products"
+                                           class="search-product-input">
+                                    <button type="submit" style="border:none;background:none"><img src="assets/images/search-product-icon.png" id="product-search-btn" class="search-product-icon"></button>
+                                </form>
+
                             </div>
                         </div>
                         <div class="categories">
                             <h4>Product categories</h4>
                             <ul>
-                                @{
-                                    foreach (var category in Model.Categories)
-                                    {
-                                        <li><a class="category" data-id="@category.Id" id="@category.Id">@category.Title (@category.Products.Count())</a> </li>
+                                <form method="get" asp-action="index" asp-controller="shop">
+                                    @{
+                                        foreach (var category in Model.Categories)
+                                        {
+                                                <li><button style="border:none;background:none"><a class="category" data-id="@category.Id" id="@category.Id" asp-route-CategoryId="@category.Id">@category.Title (@category.Products.Count())</a></button> </li>
+                                        }
                                     }
-                                }
+                                </form>
                             </ul>
                         </div>
                     </div>
@@ -54,22 +61,22 @@
                         @{
                             foreach (var product in Model.Products)
                             {
-                                <div class="col-lg-4 col-md-6 pb-5">
-                                    <div class="productt" id="@product.Id">
-                                        <div class="product-image"
-                                         style="background-image: url(assets/images/@product.Photoname);">
-                                            <div class="basket-wishlist-compare d-flex justify-content-center">
-                                                <div data-id="@product.Id"  class="add-basket text-center addToCardBtn">
-                                                    <i class="fas fa-shopping-basket "></i>
+                                        <div class="col-lg-4 col-md-6 pb-5">
+                                            <div class="productt" id="@product.Id">
+                                                <div class="product-image"
+                                                 style="background-image: url(assets/images/@product.Photoname);">
+                                                    <div class="basket-wishlist-compare d-flex justify-content-center">
+                                                        <div data-id="@product.Id" class="add-basket text-center addToCardBtn">
+                                                            <i class="fas fa-shopping-basket "></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-inf">
+                                                    <h5 class="productt-name">@product.Title</h5>
+                                                    <p><span>$</span><span class="price">@product.Price</span></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="product-inf">
-                                            <h5 class="productt-name">@product.Title</h5>
-                                            <p><span>$</span><span class="price">@product.Price</span></p>
-                                        </div>
-                                    </div>
-                                </div>
                             }
                         }
                     </div>
@@ -78,18 +85,18 @@
                             var prevPage = Model.Page - 1;
                             if (1 < Model.Page)
                             {
-                                <a asp-action="index" asp-controller="shop" asp-route-page="@prevPage" class="pagination-element"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+                                        <a asp-action="index" asp-controller="shop" asp-route-name="@Model.Name" asp-route-page="@prevPage" class="pagination-element"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
                             }
 
                             for (var i = 1; i <= Model.PageCount; i++)
                             {
-                                <a asp-action="index" asp-controller="shop" asp-route-page="@i" class="@(Model.Page==i?"pagination-element pagination-active":"pagination-element ")">@i</a>
+                                        <a asp-action="index" asp-controller="shop" asp-route-name="@Model.Name" asp-route-page="@i" class="@(Model.Page==i?"pagination-element pagination-active":"pagination-element ")">@i</a>
                             }
 
                             var nextPage = Model.Page + 1;
                             if (Model.PageCount != Model.Page)
                             {
-                                <a asp-action="index" asp-controller="shop" asp-route-page="@nextPage" class="pagination-element"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                        <a asp-action="index" asp-controller="shop" asp-route-page="@nextPage" asp-route-name="@Model.Name" class="pagination-element"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             }
                         }
                     </div>

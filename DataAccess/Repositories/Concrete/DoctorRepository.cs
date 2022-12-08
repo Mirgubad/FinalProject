@@ -20,22 +20,21 @@ namespace DataAccess.Repositories.Concrete
             _context = context;
         }
 
-        public async Task<List<Doctor>> PaginateDoctorAsync(int page, int take)
+        public async Task<IQueryable<Doctor>> PaginateDoctorAsync(IQueryable<Doctor> doctors, int page, int take)
         {
-
-            var doctors = await _context.Doctors.Skip((page - 1) * take).Take(take).ToListAsync();
+            doctors = doctors.Skip((page - 1) * take).Take(take);
             return doctors;
         }
 
-        public async Task<int> GetPageCountAsync(int take)
+        public async Task<int> GetPageCountAsync(IQueryable<Doctor> doctors,int take)
         {
-            var pageCount = await _context.Doctors.CountAsync();
+            var pageCount = await doctors.CountAsync();
             return (int)Math.Ceiling((decimal)pageCount / take);
         }
 
-        public async Task<List<Doctor>> FilterByName(string? name)
+        public async Task<IQueryable<Doctor>> FilterByName(string? name)
         {
-            return await _context.Doctors.Where(d => !string.IsNullOrEmpty(name) ? d.FullName.Contains(name) : true).ToListAsync();
+            return _context.Doctors.Where(d => !string.IsNullOrEmpty(name) ? d.FullName.Contains(name) : true);
         }
 
         public async Task<List<Doctor>> GetHomeDoctorsAsync()

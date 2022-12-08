@@ -1,4 +1,8 @@
-﻿<!-- header start -->
+﻿@using Web.ViewModels.Components;
+@model HeaderComponentVM;
+
+
+<!-- header start -->
 <header>
     <div class="header-bottom no-select">
         <div class="container">
@@ -74,7 +78,7 @@
                             {
                                 <div class="basket" id="openBasket">
                                     <img src="~/assets/images/shop-basket.png" alt="">
-                                    <span class="cart-items-count text-center" id="basketCount">0</span>
+                                    <span class="cart-items-count text-center" id="basketCount">@Model.Count</span>
                                 </div>
                                 <div class="burger-menu d-block d-xl-none"><i class="fas fa-bars"></i></div>
                                 <div class="px-2">
@@ -97,11 +101,11 @@
                 <div class="mini-cart" style="overflow-y:scroll">
                     <ul class="cart-items" id="miniBasket">
                     </ul>
-                   @* <div class="total-price  justify-content-between">
-                        <div class="subtotal">Subtotal:</div>
-                        <div class="total-price-self"><span>$</span><span class="total-price-number">0</span></div>
+                    @* <div class="total-price  justify-content-between">
+                    <div class="subtotal">Subtotal:</div>
+                    <div class="total-price-self"><span>$</span><span class="total-price-number">0</span></div>
                     </div>*@
-                  
+
                 </div>
 
                 <nav class="mobile-nav d-xl-none">
