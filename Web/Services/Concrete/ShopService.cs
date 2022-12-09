@@ -33,9 +33,9 @@ namespace Web.Services.Concrete
         }
 
 
-        public async Task<ShopIndexVM> GetAllProductsWithCategoriesAsync(ShopIndexVM model, string? name)
+        public async Task<ShopIndexVM> GetAllProductsWithCategoriesAsync(ShopIndexVM model)
         {
-            var products = await _productRepository.FilterByName(name);
+            var products = await _productRepository.FilterByName(model.Name);
             products = await _productRepository.FilterByCategoryId(products, model.CategoryId);
             var pageCount = await _productRepository.GetPageCountAsync(products, model.Take);
             products = await _productRepository.PaginateProductAsync(products, model.Page, model.Take);
@@ -47,7 +47,7 @@ namespace Web.Services.Concrete
                 PageCount = pageCount,
                 Page = model.Page,
                 Take = model.Take,
-                Name = name
+                Name = model.Name,
             };
             return model;
         }

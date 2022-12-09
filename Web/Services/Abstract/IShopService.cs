@@ -5,7 +5,7 @@ namespace Web.Services.Abstract
 {
     public interface IShopService
     {
-        Task<ShopIndexVM> GetAllProductsWithCategoriesAsync(ShopIndexVM model, string? name);
+        Task<ShopIndexVM> GetAllProductsWithCategoriesAsync(ShopIndexVM model);
 
 
     }

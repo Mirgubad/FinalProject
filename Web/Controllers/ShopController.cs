@@ -14,9 +14,9 @@ namespace Web.Controllers
         {
             _shopService = shopService;
         }
-        public async Task<IActionResult> Index(ShopIndexVM model, string? name)
+        public async Task<IActionResult> Index(ShopIndexVM model)
         {
-            model = await _shopService.GetAllProductsWithCategoriesAsync(model, name);
+            model = await _shopService.GetAllProductsWithCategoriesAsync(model);
             return View(model);
         }
 

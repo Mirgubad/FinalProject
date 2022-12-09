@@ -24,7 +24,6 @@ namespace DataAccess.Repositories.Concrete
             return await _context.LastestNews
                 .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
-
         }
     }
 }
