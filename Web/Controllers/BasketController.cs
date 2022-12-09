@@ -19,7 +19,6 @@ namespace Web.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await _basketService.GetBasketProducts();
-
             return View(model);
         }
 
@@ -27,32 +26,29 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(BasketAddVM model)
         {
-            var isSucceded = await _basketService.Add(model.Id);
-            if (!isSucceded) return NotFound();
-            return Ok();
-
+            if (await _basketService.Add(model.Id)) return Ok();
+            return NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var isDeleted = await _basketService.RemoveAsync(id);
-            if (isDeleted) return RedirectToAction("Index", "basket");
-            return Ok();
+            if (await _basketService.RemoveAsync(id)) return Ok();
+            return NotFound();
         }
 
 
         [HttpPost]
         public async Task<IActionResult> IncreaseCount(int id)
         {
-            if (!await _basketService.IncreaseCountAsync(id)) return NotFound();
-            return Ok();
+            if (await _basketService.IncreaseCountAsync(id)) return Ok();
+            return NotFound();
         }
         [HttpPost]
         public async Task<IActionResult> DecreaseCount(int id)
         {
-            if (!await _basketService.DecreaseCountAsync(id)) return NotFound();
-            return Ok();
+            if (await _basketService.DecreaseCountAsync(id)) return Ok();
+            return NotFound();
         }
 
 
@@ -63,6 +59,12 @@ namespace Web.Controllers
             return PartialView("_MiniBasketPartial", model);
         }
 
-       
+        [HttpPost]
+        public async Task<IActionResult> ClearBasket(int id)
+        {
+            if (await _basketService.ClearBasket(id)) return RedirectToAction("index","basket");
+            return NotFound();
+        }
+
     }
 }

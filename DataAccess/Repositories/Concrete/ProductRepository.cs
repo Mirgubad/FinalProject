@@ -44,7 +44,10 @@ namespace DataAccess.Repositories.Concrete
 
         public async Task<IQueryable<Product>> PaginateProductAsync(IQueryable<Product> products, int page, int take)
         {
-            products = products.Skip((page - 1) * take).Take(take);
+            products = products
+                .OrderByDescending(p=>p.CreatedAt)
+                .Skip((page - 1) * take)
+                .Take(take);
             return products;
         }
 

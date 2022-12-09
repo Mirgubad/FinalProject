@@ -22,11 +22,14 @@ namespace DataAccess.Repositories.Concrete
 
         public async Task<IQueryable<Doctor>> PaginateDoctorAsync(IQueryable<Doctor> doctors, int page, int take)
         {
-            doctors = doctors.Skip((page - 1) * take).Take(take);
+            doctors = doctors
+                .OrderByDescending(d => d.CreatedAt)
+                .Skip((page - 1) * take)
+                .Take(take);
             return doctors;
         }
 
-        public async Task<int> GetPageCountAsync(IQueryable<Doctor> doctors,int take)
+        public async Task<int> GetPageCountAsync(IQueryable<Doctor> doctors, int take)
         {
             var pageCount = await doctors.CountAsync();
             return (int)Math.Ceiling((decimal)pageCount / take);

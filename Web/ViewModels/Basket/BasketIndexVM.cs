@@ -10,6 +10,7 @@ namespace Web.ViewModels.Basket
         }
         public List<BasketProductVM> BasketProducts { get; set; }
 
+        public int BasketId { get; set; }
 
     }
 

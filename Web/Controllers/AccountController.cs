@@ -36,15 +36,13 @@ namespace Web.Controllers
         [OnlyAnonimous]
         public async Task<IActionResult> Register()
         {
-
             return View();
         }
         [OnlyAnonimous]
         [HttpPost]
         public async Task<IActionResult> Register(AccountRegisterVM model)
         {
-            var isSucceded = await _accountService.RegisterAsync(model);
-            if (isSucceded) return RedirectToAction(nameof(Login));
+            if (await _accountService.RegisterAsync(model)) return RedirectToAction(nameof(Login));
             return View(model);
         }
         #endregion

@@ -14,7 +14,7 @@ namespace Web.Services.Concrete
         private readonly IAboutRepository _aboutRepository;
         private readonly IAboutPhotoRepository _aboutPhotoRepository;
         private readonly IHomeVideoRepository _homeVideoRepository;
-        private readonly INewsRepository _lastestNewsRepository;
+        private readonly INewsRepository _newsRepository;
         private readonly IStatisticRepository _statisticRepository;
 
         public HomeService(IHomeMainSliderRepository homeMainSliderRepository,
@@ -25,7 +25,7 @@ namespace Web.Services.Concrete
             IAboutRepository aboutRepository,
             IAboutPhotoRepository aboutPhotoRepository,
             IHomeVideoRepository homeVideoRepository,
-            INewsRepository lastestNewsRepository,
+            INewsRepository newsRepository,
             IStatisticRepository statisticRepository)
         {
             _homeMainSliderRepository = homeMainSliderRepository;
@@ -36,7 +36,7 @@ namespace Web.Services.Concrete
             _aboutRepository = aboutRepository;
             _aboutPhotoRepository = aboutPhotoRepository;
             _homeVideoRepository = homeVideoRepository;
-            _lastestNewsRepository = lastestNewsRepository;
+            _newsRepository = newsRepository;
             _statisticRepository = statisticRepository;
         }
         public async Task<HomeIndexVM> GetAllAsync()
@@ -51,7 +51,7 @@ namespace Web.Services.Concrete
                 About = await _aboutRepository.GetAsync(),
                 AboutPhoto = await _aboutPhotoRepository.GetAllAsync(),
                 HomeVideo = await _homeVideoRepository.GetAsync(),
-                LastestNews = await _lastestNewsRepository.GetAllAsync(),
+                LastestNews = await _newsRepository.GetAllAsync(),
                 Statistics = await _statisticRepository.GetAllAsync(),
             };
 

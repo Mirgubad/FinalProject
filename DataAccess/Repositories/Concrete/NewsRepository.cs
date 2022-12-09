@@ -21,7 +21,9 @@ namespace DataAccess.Repositories.Concrete
 
         public async Task<List<LastestNews>> GetAllByDescByDateAsync()
         {
-            return await _context.LastestNews.OrderByDescending(n => n.CreatedAt).ToListAsync();
+            return await _context.LastestNews
+                .OrderByDescending(n => n.CreatedAt)
+                .ToListAsync();
 
         }
     }

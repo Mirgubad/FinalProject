@@ -3,6 +3,7 @@ using DataAccess.Contexts;
 using DataAccess.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.AccessControl;
 using Web.Services.Abstract;
 using Web.ViewModels.Basket;
 
@@ -72,6 +73,14 @@ namespace Web.Services.Concrete
             return true;
         }
 
+        public async Task<bool> ClearBasket(int id)
+        {
+            var basket = await _basketRepository.GetAsync(id);
+            if (basket == null) return false;
+            await _basketRepository.DeleteAsync(basket);
+            return true;
+        }
+
         public async Task<bool> DecreaseCountAsync(int id)
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
@@ -112,6 +121,7 @@ namespace Web.Services.Concrete
                         Quantity = basketProduct.Quantity,
                         Title = basketProduct.Product.Title,
                     };
+                    model.BasketId = basketProduct.BasketId;
                     model.BasketProducts.Add(basketProducts);
                 }
             }
@@ -133,7 +143,6 @@ namespace Web.Services.Concrete
                 {
                     if (dbbasketProduct.ProductId == id)
                     {
-
                         dbbasketProduct.Quantity++;
                         await _basketRepository.UpdateAsync(basketProduct);
                     }
@@ -157,8 +166,8 @@ namespace Web.Services.Concrete
             return true;
         }
 
-    
-      
+
+
     }
 }
 
